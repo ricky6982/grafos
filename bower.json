@@ -1,0 +1,21 @@
+{
+  "name": "grafos",
+  "version": "1.0.0",
+  "authors": [
+    "RickySSD <ricky6982@gmail.com>"
+  ],
+  "description": "Practica de creación de Grafos con la libreria Vis.js y el framework AngularJs",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "vis": "~4.7.0",
+    "bootstrap": "~3.3.5"
+  }
+}
