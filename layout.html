@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Practica de Creación de Grafos</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/vis/dist/vis.min.js"></script>
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/vis/dist/vis.min.js"></script>
   </head>
 </html>
 <body ng-app="app">
@@ -17,8 +16,8 @@
     <h1>Creación de Grafos</h1>
     <footer>Representación de Senderos, Intersecciones y Puntos de Referencia</footer>
   </blockquote>
-  <legend class="text-center">Prueba de Libreria Visjs con AngularJs</legend>
-  <div ng-controller="GrafoCtrl" class="container">
+  <legend class="text-center"> Prueba de Libreria Visjs con AngularJs</legend>
+  <div ng-controller="AppCtrl" class="container">
     <div class="row">
       <div class="panel panel-default">
         <div id="network" class="panel-body"></div>
@@ -27,7 +26,6 @@
     <div class="row">
       <div class="well well-sm">
         <h4 class="text-center">Controles</h4>
-        <div class="row"></div>
       </div>
     </div>
     <div class="row">

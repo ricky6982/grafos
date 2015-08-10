@@ -18,7 +18,9 @@ body(ng-app="app")
         h1 Creación de Grafos
         footer Representación de Senderos, Intersecciones y Puntos de Referencia
 
-    legend(class="text-center") Prueba de Libreria Visjs con AngularJs
+    legend(class="text-center") 
+        block titulo
+            | Prueba de Libreria Visjs con AngularJs
 
     div(class="container" ng-controller="AppCtrl")
         //- Contenedor Canvas para la Red
@@ -29,7 +31,7 @@ body(ng-app="app")
         div(class="row")
             div(class="well well-sm")
                 h4(class="text-center") Controles
-                div(class="row")
+                block controlador
 
         block contenedor
             div(class="row")
