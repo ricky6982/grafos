@@ -1,0 +1,43 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title Practica de Creación de Grafos
+        link(rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="css/main.css")
+
+        script(src="bower_components/jquery/dist/jquery.js")
+        script(src="bower_components/angular/angular.min.js")
+        script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(src="bower_components/vis/dist/vis.min.js")
+        script(src="js/app.js")
+
+body(ng-app="app")
+    blockquote(class="page-header")
+        h1 Creación de Grafos
+        footer Representación de Senderos, Intersecciones y Puntos de Referencia
+
+    legend(class="text-center") Prueba de Libreria Visjs con AngularJs
+
+    div(class="container" ng-controller="GrafoCtrl")
+        //- Contenedor Canvas para la Red
+        div(class="row")
+            div(class="panel panel-default")
+                div(id="network", class="panel-body")
+                    
+        div(class="row")
+            div(class="well well-sm")
+                h4(class="text-center") Controles
+                div(class="row")
+
+        block contenedor
+            div(class="row")
+                div(class="well well-sm")
+                    h4 Modelo
+                    ul
+                        li(ng-repeat="node in nodes._data")
+                            strong Id: 
+                            | asdf {{ node.id }}
+                            strong Label:
+                            | asdf {{ node.label }}
+
