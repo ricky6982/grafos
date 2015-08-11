@@ -17,7 +17,7 @@
     <h1>Creación de Grafos</h1>
     <footer>Representación de Senderos, Intersecciones y Puntos de Referencia</footer>
   </blockquote>
-  <legend class="text-center">Prueba de Libreria Visjs con AngularJs</legend>
+  <legend class="text-center"> Creación de Grafo por medio de Trayectorias</legend>
   <div ng-controller="AppCtrl" class="container">
     <div class="row">
       <div class="panel panel-default">
@@ -27,7 +27,29 @@
     <div class="row">
       <div class="well well-sm">
         <h4 class="text-center">Controles</h4>
-        <div class="row"></div>
+        <div class="row">
+          <div class="col">
+            <h3 class="text-center">Crear Trayecto</h3>
+            <div class="form-horizontal">
+              <div ng-repeat="item in trayectoria track by $index" class="form-group">
+                <label class="col-sm-2 control-label">Nodo {{ $index + 1 }}</label>
+                <div class="col-sm-2">
+                  <input type="number" ng-model="item.id" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-1">
+                  <button ng-click="quitarNodo()" class="btn btn-danger"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+                  <button ng-click="addNodo()" class="btn btn-primary"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+                  <button ng-click="crearTrayecto()" class="btn btn-success">
+                     
+                     Crear Trayecto
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
