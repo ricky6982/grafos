@@ -40,7 +40,7 @@ body(ng-app="app")
                     ul
                         li(ng-repeat="node in nodes._data")
                             strong Id: 
-                            | asdf {{ node.id }}
-                            strong Label:
-                            | asdf {{ node.label }}
+                            | {{ node.id }}
+                            strong - Label:
+                            | {{ node.label }}
 
