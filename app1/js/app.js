@@ -14,6 +14,16 @@ app.controller('AppCtrl', [
         };
         network = new vis.Network($scope.container, $scope.data, $scope.options);
 
+        // Opciones de Configuración
+        $scope.nodoMovimiento = false;
+        $scope.toggleMovimiento = function(){
+            if ($scope.nodoMovimiento) {
+                network.setOptions({nodes: {physics: false }});
+            }else{
+                network.setOptions({nodes: {physics: true }});
+            }
+        };
+
         // Variables para Depuración en la consola
         nodes = $scope.nodes;
         edges = $scope.edges;

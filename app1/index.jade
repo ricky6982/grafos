@@ -26,3 +26,6 @@ block controlador
                             |  Agregar Nodo
                         button(class="btn btn-success", ng-click="crearTrayecto()") 
                             |  Crear Trayecto
+                        label
+                            input(type="checkbox", ng-model="nodoMovimiento", ng-change="toggleMovimiento()") 
+                            | Habilitar Movimiento de Nodos
