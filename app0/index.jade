@@ -1,0 +1,31 @@
+extend ../layout.jade
+
+block javascripts
+    script(src="js/app.js")
+
+block titulo
+    | Creación de Grafo por Nodos y Aristas
+
+block controlador
+    div(class="row")
+        //- Panel de Controles de Nodos
+        div(class="col-sm-4")
+            div(class="panel panel-primary")
+                h5(class="text-center") Nodos
+                div(class="form-group text-center")
+                    button(class="btn btn-primary", ng-click="nodo.add('int')") Crear Intersección
+                    button(class="btn btn-primary", ng-click="nodo.add('pr')") Crear Punto de Referencia
+    
+        //- Panel de Controles de Arcos
+        div(class="col-sm-4")
+            div(class="panel panel-primary")
+                h5(class="text-center") Arcos
+                div(class="row form-group")
+                    div(class="col-xs-6")
+                        input(type="number", min="0", ng-model="arco_from", placeholder="Desde", class="form-control")
+                    div(class="col-xs-6")
+                        input(type="number", min="0", ng-model="arco_to", placeholder="Hasta", class="form-control")
+                div(class="row")
+                    div(class="col text-center form-group")
+                        button(class="btn btn-primary" ng-click="arco.add()") Crear Arco
+                

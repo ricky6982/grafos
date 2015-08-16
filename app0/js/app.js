@@ -1,6 +1,6 @@
 var app = angular.module('app',[]);
 
-app.controller('GrafoCtrl',[
+app.controller('AppCtrl',[
     '$scope',
     function($scope){
         $scope.nodes = new vis.DataSet([]);
