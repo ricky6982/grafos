@@ -29,42 +29,54 @@
         <h4 class="text-center">Controles</h4>
         <div class="row">
           <div class="col-sm-10 col-xs-9">
-            <h3>Trayectoria</h3>
+            <h3>Trayecto</h3>
             <div class="form-inline text-center">
               <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px; display: inline-block">
-                <input type="number" style="width: 75px;" class="form-control text-center">
+                <input type="number" style="width: 75px;" ng-model="nodo.id" class="form-control text-center">
                 <label><i ng-hide="($index + 1) == trayecto.length" class="glyphicon glyphicon-menu-right"></i></label>
               </div>
             </div>
           </div>
           <div class="col-sm-2 col-xs-3">
             <div class="text-center">
-              <button class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
-              <button class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
-              <button class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
-              <button class="btn btn-info btn-block">
+              <button ng-click="nodo.add()" class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+              <button ng-click="nodo.remove()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+              <button ng-click="trayectoria.clean()" class="btn btn-info btn-block">
                  
                  Limpiar Trayecto
               </button>
-              <button class="btn btn-warning btn-block">
+              <button ng-click="trayectoria.reestablecer()" class="btn btn-warning btn-block">
                  
                  Reestablecer
               </button>
+              <button ng-click="trayectoria.crear()" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <h3>Configuración General</h3>
+            <h3>Comportamiento del Grafo</h3>
             <div class="row">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="form-horizontal">
-                  <div class="form-group">
-                    <label>
-                      <input type="checkbox">Deshabilitar Movimiento de Nodos
-                    </label>
-                  </div>
+              <div class="col-sm-6 col-sm-offset-3">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">Deshabilitar Movimiento de Nodos
+                  </label>
                 </div>
+                <button class="btn btn-info btn-block">Guardar posición de Nodos</button>
+                <button class="btn btn-danger btn-block">Eliminar Nodo Seleccionado</button>
+                <button class="btn btn-warning btn-block">Eliminar Arco/s Seleccionado/s</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h3>Información Referencial</h3>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <button class="btn btn-info btn-block">Marcar Nodo Seleccionado como Punto de Referencia (PR)</button>
+                <button class="btn btn-primary btn-block">Marcar Nodo Seleccionado como Intersección (I)</button>
               </div>
             </div>
           </div>

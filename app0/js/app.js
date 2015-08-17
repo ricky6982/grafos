@@ -3,9 +3,10 @@ var app = angular.module('app',[]);
 app.controller('AppCtrl',[
     '$scope',
     function($scope){
+
+        // Definición de Grafo con VisJs
         $scope.nodes = new vis.DataSet([]);
         $scope.edges = new vis.DataSet([]);
-        nodoId = 1;
 
         container = document.getElementById('network');
         data = {
@@ -16,6 +17,8 @@ app.controller('AppCtrl',[
 
         network = new vis.Network(container, data, options);
 
+        // Funciones de creación y edición del Trayecto
+        nodoId = 1;
         $scope.nodo = {
             add: function(tipo){
                 if (tipo == 'int') {
