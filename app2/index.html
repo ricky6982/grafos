@@ -28,22 +28,28 @@
       <div class="well well-sm">
         <h4 class="text-center">Controles</h4>
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-10 col-xs-9">
             <h3>Trayectoria</h3>
-            <div class="form-inline">
-              <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px;" class="pull-left">
+            <div class="form-inline text-center">
+              <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px; display: inline-block">
                 <input type="number" style="width: 75px;" class="form-control text-center">
                 <label><i ng-hide="($index + 1) == trayecto.length" class="glyphicon glyphicon-menu-right"></i></label>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-2 col-xs-3">
             <div class="text-center">
-              <button class="btn btn-danger"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
-              <button class="btn btn-success"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
-              <button class="btn btn-primary"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
+              <button class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+              <button class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+              <button class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
+              <button class="btn btn-info btn-block">
+                 
+                 Limpiar Trayecto
+              </button>
+              <button class="btn btn-warning btn-block">
+                 
+                 Reestablecer
+              </button>
             </div>
           </div>
         </div>

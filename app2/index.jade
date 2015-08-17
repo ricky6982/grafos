@@ -8,25 +8,28 @@ block titulo
 
 block controlador
     div(class="row")
-        div(class="col-sm-12")
+        div(class="col-sm-10 col-xs-9")
             h3 Trayectoria
-            div(class="form-inline")
-                div(ng-repeat="nodo in trayecto" class="pull-left", style="margin-bottom: 15px;")
+            div(class="form-inline text-center")
+                div(ng-repeat="nodo in trayecto", style="margin-bottom: 15px; display: inline-block")
                     input(type="number", class="form-control text-center", style="width: 75px;")
                     label()
                         i(class="glyphicon glyphicon-menu-right", ng-hide="($index + 1) == trayecto.length")
-    div(class="row")
-        div(class="col-sm-12")
+        div(class="col-sm-2 col-xs-3")
             div(class="text-center")
-                button(class="btn btn-danger") 
+                button(class="btn btn-danger btn-block") 
                     i(class="glyphicon glyphicon-minus")
                     |  Quitar Nodo
-                button(class="btn btn-success") 
+                button(class="btn btn-success btn-block") 
                     i(class="glyphicon glyphicon-plus")
                     |  Agregar Nodo
-                button(class="btn btn-primary") 
+                button(class="btn btn-primary btn-block") 
                     i(class="glyphicon glyphicon-floppy-disk")
                     |  Crear Trayecto
+                button(class="btn btn-info btn-block") 
+                    |  Limpiar Trayecto
+                button(class="btn btn-warning btn-block") 
+                    |  Reestablecer
     div(class="row")
         div(class="col-sm-12")
             h3 Configuración General
