@@ -27,6 +27,42 @@
     <div class="row">
       <div class="well well-sm">
         <h4 class="text-center">Controles</h4>
+        <div class="row">
+          <div class="col-sm-12">
+            <h3>Trayectoria</h3>
+            <div class="form-inline">
+              <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px;" class="pull-left">
+                <input type="number" style="width: 75px;" class="form-control text-center">
+                <label><i ng-hide="($index + 1) == trayecto.length" class="glyphicon glyphicon-menu-right"></i></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="text-center">
+              <button class="btn btn-danger"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+              <button class="btn btn-success"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+              <button class="btn btn-primary"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h3>Configuración General</h3>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-horizontal">
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox">Deshabilitar Movimiento de Nodos
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">

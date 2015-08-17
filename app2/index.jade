@@ -5,3 +5,37 @@ block javascripts
 
 block titulo
     | Mejora en la interfaz de usuario para la creación de trayectos.
+
+block controlador
+    div(class="row")
+        div(class="col-sm-12")
+            h3 Trayectoria
+            div(class="form-inline")
+                div(ng-repeat="nodo in trayecto" class="pull-left", style="margin-bottom: 15px;")
+                    input(type="number", class="form-control text-center", style="width: 75px;")
+                    label()
+                        i(class="glyphicon glyphicon-menu-right", ng-hide="($index + 1) == trayecto.length")
+    div(class="row")
+        div(class="col-sm-12")
+            div(class="text-center")
+                button(class="btn btn-danger") 
+                    i(class="glyphicon glyphicon-minus")
+                    |  Quitar Nodo
+                button(class="btn btn-success") 
+                    i(class="glyphicon glyphicon-plus")
+                    |  Agregar Nodo
+                button(class="btn btn-primary") 
+                    i(class="glyphicon glyphicon-floppy-disk")
+                    |  Crear Trayecto
+    div(class="row")
+        div(class="col-sm-12")
+            h3 Configuración General
+            div(class="row")
+                div(class="col-sm-8 col-sm-offset-2")
+                    div(class="form-horizontal")
+                        div(class="form-group")
+                            label
+                                input(type="checkbox")
+                                | Deshabilitar Movimiento de Nodos
+
+
