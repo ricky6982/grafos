@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Practica de Creación de Grafos</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/vis/dist/vis.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="app">
+    <blockquote class="page-header">
+        <h1>Creación de Grafos</h1>
+        <footer>Representación de Senderos, Intersecciones y Puntos de Referencia</footer>
+    </blockquote>
+    <div class="container" ng-controller="GrafoCtrl">
+        <div class="row">
+            <div class="panel panel-default">
+                <div id="network" class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="well well-sm">
+                <h4 class="text-center">Controles</h4>
+                <div class="row">
+                    <!-- Panel de Controles de Nodos -->
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <h5 class="text-center">Nodos</h5>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary" ng-click="nodo.add('int')">Crear Intersección</button>
+                                <button class="btn btn-primary" ng-click="nodo.add('pr')">Crear Punto de Referencia</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Panel de Controles de Arcos -->
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <h5 class="text-center">Arcos</h5>
+                            <div class="row form-group">
+                                <div class="col-xs-6">
+                                    <input type="number" min="0" ng-model="arco_from" placeholder="Desde" class="form-control">
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="number" min="0" ng-model="arco_to" placeholder="Hasta" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center form-group">
+                                    <button class="btn btn-primary" ng-click="arco.add()">Crear Arco</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="well well-sm">
+                <h4>Modelo</h4>
+                <ul>
+                    <li ng-repeat="node in nodes._data">
+                        <strong>Id: </strong> {{ node.id }} - <strong>Label: </strong> {{ node.label }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

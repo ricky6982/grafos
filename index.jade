@@ -1,0 +1,52 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title Practica de Creación de Grafos
+        link(rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="css/main.css")
+
+        script(src="bower_components/jquery/dist/jquery.js")
+        script(src="bower_components/angular/angular.min.js")
+        script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(src="bower_components/vis/dist/vis.min.js")
+        block javascripts
+            
+
+body(ng-app="app")
+    blockquote(class="page-header")
+        h1(class="text-center") Prototipos de Mapa de Recorridos
+        footer Representación de Senderos, Intersecciones y Puntos de Referencia por medio de Grafos.
+    div(class="container")
+        div(class="row")
+            div(class="col")
+                div(class="row leyenda lead")
+                    include ./docs/about.jade
+                    
+        div(class="row")
+            div(class="col-sm-6") 
+                div(class="well")
+                    legend(class="text-center") Prototipo 1
+                    p Utilización de la Libreria VisJs con AngularJs para crear grafo a partir de un panel de control que permite la Generación de Nodos y Arcos.
+                    p(class="text-center")
+                        a(href="app0/index.html", class="btn btn-default") Ir al Prototipo
+            div(class="col-sm-6")
+                div(class="well")
+                    legend(class="text-center") Prototipo 2
+                    p El Prototipo 1 mostro la dificultad que se tiene al crear un grafo que represente el recorrido creando de forma individual los arcos y nodos, es por ello que se replanteo la forma de generación de un mapa de recorridos a traves de la generación de trayectos. Cada trayecto que se crea, es una sucesion de nodos conectados por arcos.
+                    p Además se estableció una serie de restricciones al momento de crear una trayecto:
+                        ul
+                            li No existe una arista que se conecte a un mismo nodo.
+                            li Entre dos nodos diferentes solo existe una arista que los une.
+                    p(class="text-center")
+                        a(href="app1/index.html", class="btn btn-default") Ir al Prototipo
+
+        div(class="row")
+            div(class="col-sm-6")
+                div(class="well")
+                    legend(class="text-center") Prototipo 1
+                    p descripción del prototipo
+            div(class="col-sm-6")
+                div(class="well")
+                    legend(class="text-center") Prototipo 1
+                    p descripción del prototipo
