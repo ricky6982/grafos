@@ -14,6 +14,15 @@ app.controller('AppCtrl',[
         };
         network = new vis.Network($scope.container, $scope.data, $scope.options);
 
+        // Definición de Variables para la depuración por Consola
+        deb = {
+            nodes: $scope.nodes,
+            edges: $scope.edges,
+            data: $scope.data,
+            options: $scope.options,
+            container: $scope.container
+        };
+
         // Definición de Datos Iniciales para la creación del Trayecto
         $scope.trayecto = [
             {id: ''},
