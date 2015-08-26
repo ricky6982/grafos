@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Practica de Creación de Grafos</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/vis/dist/vis.min.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+</html>
+<body ng-app="app">
+  <blockquote class="page-header">
+    <h1>Creación del Mapa de Recorridos</h1>
+    <footer>Representación de Senderos, Intersecciones y Puntos de Referencia</footer>
+  </blockquote>
+  <legend class="text-center"> Mejora en la interfaz de usuario para la creación de trayectos.</legend>
+  <div ng-controller="AppCtrl" class="container">
+    <div class="well well-sm"><strong>Objetivo:</strong>
+      El panel de controles para la creación del mapa de recorridos debera mostrarse en pestañas (Tabs) para poder visualizar de mejor manera 
+      todas las opciones.</div>
+    <div class="row">
+      <div class="well well-sm">
+        <h4 class="text-center">Controles</h4>
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#trayectos" data-toggle="tab">Trayectos</a></li>
+          <li role="presentation"><a href="#comportamiento" data-toggle="tab">Comportamiento</a></li>
+          <li role="presentation"><a href="#informacion" data-toggle="tab">Información Referencial</a></li>
+        </ul>
+        <div style="background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 25px 10px;" class="tab-content">
+          <div role="tabpanel" id="trayectos" class="tab-pane active">
+            <div class="row">
+              <div class="col-sm-10 col-xs-9">
+                <h3>Trayecto</h3>
+                <div class="form-inline text-center">
+                  <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px; display: inline-block">
+                    <input type="number" style="width: 75px;" ng-model="nodo.id" class="form-control text-center">
+                    <label><i ng-hide="($index + 1) == trayecto.length" class="glyphicon glyphicon-menu-right"></i></label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2 col-xs-3">
+                <div class="text-center">
+                  <button ng-click="nodo.add()" class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+                  <button ng-click="nodo.remove()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+                  <button ng-click="trayectoria.clean()" class="btn btn-info btn-block">
+                     
+                     Limpiar Trayecto
+                  </button>
+                  <button ng-click="trayectoria.reestablecer()" class="btn btn-warning btn-block">
+                     
+                     Reestablecer
+                  </button>
+                  <button ng-click="trayectoria.crear()" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" id="comportamiento" class="tab-pane">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3>Comportamiento del Grafo</h3>
+                <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox">Deshabilitar Movimiento de Nodos
+                      </label>
+                    </div>
+                    <button class="btn btn-info btn-block">Guardar posición de Nodos</button>
+                    <button class="btn btn-danger btn-block">Eliminar Nodo Seleccionado</button>
+                    <button class="btn btn-warning btn-block">Eliminar Arco/s Seleccionado/s</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" id="informacion" class="tab-pane">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3>Información Referencial</h3>
+                <div class="row">
+                  <div class="col-sm-6 col-sm-offset-3">
+                    <button class="btn btn-info btn-block">Marcar Nodo Seleccionado como Punto de Referencia (PR)</button>
+                    <button class="btn btn-primary btn-block">Marcar Nodo Seleccionado como Intersección (I)</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lead">Mapa de Recorrido:</div>
+      <div class="panel panel-default">
+        <div id="network" class="panel-body"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="well well-sm">
+        <h4>Modelo</h4>
+        <ul>
+          <li ng-repeat="node in nodes._data"><strong>Id: </strong>{{ node.id }}<strong>- Label:</strong>{{ node.label }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
