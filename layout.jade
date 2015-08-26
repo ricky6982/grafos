@@ -23,15 +23,18 @@ body(ng-app="app")
             | Prueba de Libreria Visjs con AngularJs
 
     div(class="container" ng-controller="AppCtrl")
-        //- Contenedor Canvas para la Red
-        div(class="row")
-            div(class="panel panel-default")
-                div(id="network", class="panel-body")
-                    
+        //- Panel de Controles para la creación de Nodos
         div(class="row")
             div(class="well well-sm")
                 h4(class="text-center") Controles
                 block controlador
+
+        //- Contenedor Canvas para la Red
+        div(class="row")
+            div(class="lead") Mapa de Recorrido:
+            div(class="panel panel-default")
+                div(id="network", class="panel-body")
+                    
 
         block contenedor
             div(class="row")
