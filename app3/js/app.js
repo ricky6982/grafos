@@ -83,5 +83,31 @@ app.controller('AppCtrl',[
                 }
             }
         };
+
+        // Funciones para los controles del comportamiento del Grafo.
+        $scope.comportamiento = {
+            movimiento: false,
+            
+            toggleMovimiento: function(){
+                if ($scope.comportamiento.movimiento) {
+                    network.setOptions({nodes: {physics: false }});
+                }else{
+                    network.setOptions({nodes: {physics: true }});
+                }
+            },
+
+            removeNode: function(){
+                console.log('Eliminando Nodo');
+                $scope.nodes.remove(network.getSelectedNodes());
+                console.log(network.getSelectedNodes());
+            },
+
+            removeEdge: function(){
+                console.log('Eliminando Arco');
+                $scope.edges.remove(network.getSelectedEdges());
+                console.log(network.getSelectedEdges());
+            }
+
+        };
     }
 ]);
