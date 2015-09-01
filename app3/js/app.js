@@ -97,15 +97,19 @@ app.controller('AppCtrl',[
             },
 
             removeNode: function(){
-                console.log('Eliminando Nodo');
-                $scope.nodes.remove(network.getSelectedNodes());
-                console.log(network.getSelectedNodes());
+                if (window.confirm('¿Esta seguro de que quiere eliminar el nodo '+network.getSelectedNodes()+' ?')) {
+                    console.log(network.getSelectedNodes());
+                    console.log('Eliminando Nodo');
+                    $scope.nodes.remove(network.getSelectedNodes());
+                }
             },
 
             removeEdge: function(){
-                console.log('Eliminando Arco');
-                $scope.edges.remove(network.getSelectedEdges());
-                console.log(network.getSelectedEdges());
+                if (window.confirm('¿Esta seguro de que quiere elimnar los arcos seleccionados?')) {
+                    console.log(network.getSelectedEdges());
+                    console.log('Eliminando Arco');
+                    $scope.edges.remove(network.getSelectedEdges());
+                }
             }
 
         };
