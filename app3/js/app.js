@@ -110,6 +110,19 @@ app.controller('AppCtrl',[
                     console.log('Eliminando Arco');
                     $scope.edges.remove(network.getSelectedEdges());
                 }
+            },
+
+            savePositions: function(){
+                network.storePositions();
+                window.alert('Se guardaron las posiciones de los nodos');
+            },
+
+            restorePositions: function(){
+                angular.forEach($scope.nodes.getIds(), function(value, key){
+                    if ($scope.nodes.get(value).x) {
+                        network.moveNode($scope.nodes.get(value).id, $scope.nodes.get(value).x, $scope.nodes.get(value).y);
+                    }
+                });
             }
 
         };
