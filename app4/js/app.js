@@ -1,8 +1,8 @@
 var app = angular.module('app', []);
 
 app.controller('AppCtrl',[
-    '$scope',
-    function($scope){
+    '$scope', '$timeout',
+    function($scope, $timeout){
         // Definición de Grafo con VisJs
         $scope.nodes = new vis.DataSet([]);
         $scope.edges = new vis.DataSet([]);
@@ -124,7 +124,33 @@ app.controller('AppCtrl',[
                     }
                 });
             }
+        };
 
+        // Detección de Eventos en la red
+        network.on('selectEdge', function(){
+            $scope.arco.getSeleccionado();
+        });
+
+        // Funcion de Manipulación de Arcos
+        $scope.edicionArco = null;
+        $scope.arco = {
+            getSeleccionado: function(){
+                if (network.getSelectedEdges().length == 1) {
+                    $timeout(function(){
+                        $scope.edicionArco = $scope.edges.get(network.getSelectedEdges()[0]);
+                    },0);
+                }else{
+                    $timeout(function(){
+                        $scope.edicionArco = null;
+                    },0);
+                    console.log('se selecciono varios');
+                }
+            },
+
+            setDistancia: function(){
+                $scope.edicionArco.label = $scope.edicionArco.distancia;
+                $scope.edges.update($scope.edicionArco);
+            }
         };
     }
 ]);

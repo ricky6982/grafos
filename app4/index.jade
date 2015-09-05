@@ -7,9 +7,9 @@ block titulo
     | Mejora en la interfaz de usuario para la creación de trayectos.
 
 block objetivo
-    | Se pretende mejorar el panel de controles para la creación del mapa de recorridos, por medio de pestañas (Tabs), además agregar los controles para 
-    | el comportamiento del grafo.
-
+    | Se agregaron las siguientes funciones al prototipo:
+    ul
+        li Campo para establecer la distancia entre dos nodos, cuando el usuario selecciona un arco determinado.
 block controlador
     ul(class="nav nav-tabs")
         li(role="presentation" class="active")
@@ -69,9 +69,16 @@ block controlador
                 div(class="col-sm-12")
                     h3 Información Referencial
                     div(class="row")
-                        div(class="col-sm-6 col-sm-offset-3")
+                        div(class="col-sm-6")
                             button(class="btn btn-info btn-block")
                                 | Marcar Nodo Seleccionado como Punto de Referencia (PR)
                             button(class="btn btn-primary btn-block")
                                 | Marcar Nodo Seleccionado como Intersección (I)
+                        div(class="col-sm-6")
+                            div(class="form-inline well well-sm", ng-show="edicionArco")
+                                div(class="form-group")
+                                    | La distancia entre el nodo {{ edicionArco.from }} y el {{ edicionArco.to}} es:
+                                    input(type="number", class="form-control text-center", style="width: 100px; margin-left: 5px; margin-right: 5px;", ng-model="edicionArco.distancia")
+                                div(class="form-group")
+                                    button(class="btn btn-default", ng-click="arco.setDistancia()") Aplicar
 
