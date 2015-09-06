@@ -89,31 +89,33 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="well well-sm">
-                      <div class="form-group"> 
+                      <div class="form-group text-center"> 
                         <label>Nodo Seleccionado: {{ edicionNodo.label }}</label>
                       </div>
-                      <div class="form-inline form-group">
-                        <label>Tipo de Nodo: </label>
+                      <div class="form-inline form-group">Tipo de Nodo: 
                         <select class="form-control">
                           <option value="0">Punto de Referencia</option>
                           <option value="1">Intersección</option>
                         </select>
                       </div>
-                      <div class="form-group">
-                        <label>Información Referencial:</label>
+                      <div class="form-group">Información Referencial:
                         <textarea rows="6" class="form-control"></textarea>
                       </div>
                       <button class="btn btn-info btn-block">Aplicar</button>
                     </div>
                   </div>
-                  <div ng-show="edicionArco" class="col-sm-6">
-                    <div class="form-inline well well-sm">
-                      <div class="form-group">La distancia entre el nodo {{ edicionArco.from }} y el {{ edicionArco.to}} es:
+                  <div class="col-sm-6">
+                    <div class="well well-sm">
+                      <div class="form-group text-center">
+                        <label>Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.</label>
+                      </div>
+                      <div class="form-inline form-group">La distancia entre los nodos es:
                         <input type="number" style="width: 100px; margin-left: 5px; margin-right: 5px;" ng-model="edicionArco.distancia" class="form-control text-center">
                       </div>
-                      <div class="form-group">
-                        <button ng-click="arco.setDistancia()" class="btn btn-default">Aplicar</button>
+                      <div class="form-group">Información Referencial:
+                        <textarea rows="6" class="form-control"></textarea>
                       </div>
+                      <button ng-click="arco.setDistancia()" class="btn btn-info btn-block">Aplicar</button>
                     </div>
                   </div>
                 </div>

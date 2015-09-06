@@ -71,23 +71,29 @@ block controlador
                         //- div(class="col-sm-6", ng-show="edicionNodo")
                         div(class="col-sm-6")
                             div(class="well well-sm")
-                                div(class="form-group") 
+                                div(class="form-group text-center") 
                                     label Nodo Seleccionado: {{ edicionNodo.label }}
                                 div(class="form-inline form-group")
-                                    label Tipo de Nodo: 
+                                    | Tipo de Nodo: 
                                     select(class="form-control")
                                         option(value="0") Punto de Referencia
                                         option(value="1") Intersección
                                 div(class="form-group")
-                                    label Información Referencial:
+                                    | Información Referencial:
                                     textarea(class="form-control", rows="6", )
                                 button(class="btn btn-info btn-block")
                                     | Aplicar
-                        div(class="col-sm-6", ng-show="edicionArco")
-                            div(class="form-inline well well-sm")
-                                div(class="form-group")
-                                    | La distancia entre el nodo {{ edicionArco.from }} y el {{ edicionArco.to}} es:
+                        //- div(class="col-sm-6", ng-show="edicionArco")
+                        div(class="col-sm-6")
+                            div(class="well well-sm")
+                                div(class="form-group text-center")
+                                    label Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.
+                                div(class="form-inline form-group")
+                                    | La distancia entre los nodos es:
                                     input(type="number", class="form-control text-center", style="width: 100px; margin-left: 5px; margin-right: 5px;", ng-model="edicionArco.distancia")
                                 div(class="form-group")
-                                    button(class="btn btn-default", ng-click="arco.setDistancia()") Aplicar
+                                    | Información Referencial:
+                                    textarea(class="form-control", rows="6")
+                                button(class="btn btn-info btn-block", ng-click="arco.setDistancia()") Aplicar
+                                
 
