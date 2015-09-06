@@ -30,6 +30,7 @@ app.controller('AppCtrl',[
         ];
 
         // Funciones para los controles de creación de Trayecto
+        $scope.edicionNodo = null;
         $scope.nodo = {
             add: function(){
                 $scope.trayecto.push({id: ''});
@@ -38,6 +39,14 @@ app.controller('AppCtrl',[
                 if ($scope.trayecto.length > 2) {
                     $scope.trayecto.pop();
                 }
+            },
+            getSeleccionado: function(){
+                $timeout(function(){
+                    $scope.edicionNodo = $scope.nodes.get(network.getSelectedNodes()[0]);
+                    if ($scope.edicionNodo.tipo === undefined) {
+                        $scope.edicionNodo.tipo = "Punto de Referencia";
+                    }
+                },0);
             }
         };
 
@@ -129,6 +138,10 @@ app.controller('AppCtrl',[
         // Detección de Eventos en la red
         network.on('selectEdge', function(){
             $scope.arco.getSeleccionado();
+        });
+
+        network.on('selectNode', function(){
+            $scope.nodo.getSeleccionado();
         });
 
         // Funcion de Manipulación de Arcos

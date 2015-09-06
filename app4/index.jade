@@ -68,13 +68,23 @@ block controlador
                 div(class="col-sm-12")
                     //- h3 Información Referencial
                     div(class="row")
-                        //- div(class="col-sm-6")
-                        //-     button(class="btn btn-info btn-block")
-                        //-         | Marcar Nodo Seleccionado como Punto de Referencia (PR)
-                        //-     button(class="btn btn-primary btn-block")
-                        //-         | Marcar Nodo Seleccionado como Intersección (I)
+                        //- div(class="col-sm-6", ng-show="edicionNodo")
                         div(class="col-sm-6")
-                            div(class="form-inline well well-sm", ng-show="edicionArco")
+                            div(class="well well-sm")
+                                div(class="form-group") 
+                                    label Nodo Seleccionado: {{ edicionNodo.label }}
+                                div(class="form-inline form-group")
+                                    label Tipo de Nodo: 
+                                    select(class="form-control")
+                                        option(value="0") Punto de Referencia
+                                        option(value="1") Intersección
+                                div(class="form-group")
+                                    label Información Referencial:
+                                    textarea(class="form-control", rows="6", )
+                                button(class="btn btn-info btn-block")
+                                    | Aplicar
+                        div(class="col-sm-6", ng-show="edicionArco")
+                            div(class="form-inline well well-sm")
                                 div(class="form-group")
                                     | La distancia entre el nodo {{ edicionArco.from }} y el {{ edicionArco.to}} es:
                                     input(type="number", class="form-control text-center", style="width: 100px; margin-left: 5px; margin-right: 5px;", ng-model="edicionArco.distancia")
