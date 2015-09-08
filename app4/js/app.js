@@ -44,9 +44,12 @@ app.controller('AppCtrl',[
                 $timeout(function(){
                     $scope.edicionNodo = $scope.nodes.get(network.getSelectedNodes()[0]);
                     if ($scope.edicionNodo.tipo === undefined) {
-                        $scope.edicionNodo.tipo = "Punto de Referencia";
+                        $scope.edicionNodo.tipo = 1;
                     }
                 },0);
+            },
+            setCambios: function(){
+                $scope.nodes.update($scope.edicionNodo);
             }
         };
 
@@ -142,6 +145,19 @@ app.controller('AppCtrl',[
 
         network.on('selectNode', function(){
             $scope.nodo.getSeleccionado();
+        });
+
+        network.on('click', function(){
+            if (network.getSelectedEdges().length === 0) {
+                $timeout(function(){
+                    $scope.edicionArco = null;
+                },0);
+            }
+            if (network.getSelectedNodes().length === 0) {
+                $timeout(function(){
+                    $scope.edicionNodo = null;
+                },0);
+            }
         });
 
         // Funcion de Manipulación de Arcos
