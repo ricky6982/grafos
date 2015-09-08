@@ -66,10 +66,8 @@ block controlador
         div(role="tabpanel", class="tab-pane", id="informacion")
             div(class="row")
                 div(class="col-sm-12")
-                    //- h3 Información Referencial
                     div(class="row")
-                        //- div(class="col-sm-6", ng-show="edicionNodo")
-                        div(class="col-sm-6")
+                        div(class="col-sm-6", ng-show="edicionNodo")
                             div(class="well well-sm")
                                 div(class="form-group text-center") 
                                     label Nodo Seleccionado: {{ edicionNodo.label }}
@@ -83,8 +81,7 @@ block controlador
                                     textarea(class="form-control", rows="6", )
                                 button(class="btn btn-info btn-block")
                                     | Aplicar
-                        //- div(class="col-sm-6", ng-show="edicionArco")
-                        div(class="col-sm-6")
+                        div(class="col-sm-6", ng-show="edicionArco")
                             div(class="well well-sm")
                                 div(class="form-group text-center")
                                     label Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.

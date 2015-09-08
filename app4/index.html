@@ -87,7 +87,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="row">
-                  <div class="col-sm-6">
+                  <div ng-show="edicionNodo" class="col-sm-6">
                     <div class="well well-sm">
                       <div class="form-group text-center"> 
                         <label>Nodo Seleccionado: {{ edicionNodo.label }}</label>
@@ -104,7 +104,7 @@
                       <button class="btn btn-info btn-block">Aplicar</button>
                     </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div ng-show="edicionArco" class="col-sm-6">
                     <div class="well well-sm">
                       <div class="form-group text-center">
                         <label>Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.</label>
