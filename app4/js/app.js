@@ -1,8 +1,8 @@
 var app = angular.module('app', []);
 
 app.controller('AppCtrl',[
-    '$scope', '$timeout',
-    function($scope, $timeout){
+    '$scope', '$timeout', '$filter',
+    function($scope, $timeout, $filter){
         // Definición de Grafo con VisJs
         $scope.nodes = new vis.DataSet([]);
         $scope.edges = new vis.DataSet([]);
@@ -181,5 +181,30 @@ app.controller('AppCtrl',[
                 $scope.edges.update($scope.edicionArco);
             }
         };
+
+        // Calculo del Camino mas Corto con Libreria de Dijkstra
+        addConexion = function(nodoInicial, nodoFinal, valorDistancia){
+            buscarNodo = $filter('filter')(grafoDijkstra, {origen: nodoInicial });
+            if (buscarNodo.length === 0) {
+                conexion = [];
+                conexion.push({
+                    destino: nodoFinal,
+                    distancia: valorDistancia
+                });
+                grafoDijkstra.push({origen: nodoInicial, conexiones: conexion });
+            }else{
+                buscarNodo[0].conexiones.push({destino: nodoFinal, distancia: valorDistancia});
+            }
+            
+        };
+        
+        $scope.shortestPath = function(){
+            grafoDijkstra = [];
+            angular.forEach($scope.edges._data, function(value, key){
+                addConexion(value.from, value.to, value.label);
+                addConexion(value.to, value.from, value.label);
+            });
+        };
     }
 ]);
+
