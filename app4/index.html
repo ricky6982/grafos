@@ -36,6 +36,7 @@
           <li role="presentation" class="active"><a href="#trayectos" data-toggle="tab">Trayectos</a></li>
           <li role="presentation"><a href="#comportamiento" data-toggle="tab">Comportamiento</a></li>
           <li role="presentation"><a href="#informacion" data-toggle="tab">Información Referencial</a></li>
+          <li role="presentation"><a href="#shortestPath" data-toggle="tab">Camino más Corto</a></li>
         </ul>
         <div style="background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 25px 10px;" class="tab-content">
           <div role="tabpanel" id="trayectos" class="tab-pane active">
@@ -89,7 +90,6 @@
           <div role="tabpanel" id="informacion" class="tab-pane">
             <div class="row">
               <div class="col-sm-12">
-                <button ng-click="shortestPath()" class="btn btn-default">Calcular Camino más Corto</button>
                 <div class="row">
                   <div ng-show="edicionNodo" class="col-sm-6">
                     <div class="well well-sm">
@@ -129,6 +129,24 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" id="shortestPath" class="tab-pane">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-inline text-center form-group">
+                  <label>Nodo Inicial</label>
+                  <select ng-options="item.label for item in nodes._data track by item.id" ng-model="nodoInicial" class="form-control"></select>
+                  <label>Nodo Final</label>
+                  <select ng-options="item.label for item in nodes._data track by item.id" ng-model="nodoFinal" class="form-control"></select>
+                  <button ng-click="shortestPath()" class="btn btn-default">Calcular Camino más Corto</button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2 well">
+                <div ng-repeat="item in camino" style="display: inline-block;">{{ item }} <i ng-hide="$index +1 == camino.length" class="glyphicon glyphicon-menu-right"></i></div>
               </div>
             </div>
           </div>

@@ -184,6 +184,7 @@ app.controller('AppCtrl',[
 
         // Calculo del Camino mas Corto con Libreria de Dijkstra
         addConexion = function(nodoInicial, nodoFinal, valorDistancia){
+            valorDistancia = parseInt(valorDistancia,10);
             buscarNodo = $filter('filter')(grafoDijkstra, {origen: nodoInicial });
             if (buscarNodo.length === 0) {
                 conexion = [];
@@ -197,13 +198,28 @@ app.controller('AppCtrl',[
             }
             
         };
-        
+
+        $scope.camino = [];
+
         $scope.shortestPath = function(){
             grafoDijkstra = [];
             angular.forEach($scope.edges._data, function(value, key){
                 addConexion(value.from, value.to, value.label);
                 addConexion(value.to, value.from, value.label);
             });
+
+            g = new Graph();
+            angular.forEach(grafoDijkstra, function(value, key){
+                enlaces = {};
+                angular.forEach(value.conexiones, function(conexion, i){
+                    enlaces[conexion.destino] = conexion.distancia;
+                });
+                g.addVertex(value.origen, enlaces);
+            });
+            var i = $scope.nodoInicial.id.toString();
+            var f = $scope.nodoFinal.id.toString();
+            console.log(g.shortestPath(i, f).concat(i).reverse());
+            $scope.camino = g.shortestPath(i, f).concat(i).reverse();
         };
     }
 ]);
