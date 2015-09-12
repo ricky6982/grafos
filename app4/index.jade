@@ -71,6 +71,8 @@ block controlador
             div(class="row")
                 div(class="col-sm-12")
                     div(class="row")
+                        div(class="col", ng-hide="edicionNodo || edicionArco")
+                            h2(class="text-center") Seleccione un Nodo o Arco para editarlo.
                         div(class="col-sm-6", ng-show="edicionNodo")
                             div(class="well well-sm")
                                 div(class="form-group text-center") 
