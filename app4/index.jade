@@ -87,9 +87,6 @@ block controlador
                                         label
                                             input(type="radio", name="tipoNodo", ng-model="edicionNodo.tipo", value="0")
                                             | Punto de Referencia
-                                div(class="form-group")
-                                    | Información Referencial:
-                                    textarea(class="form-control", rows="6", ng-model="edicionNodo.info")
                                 button(class="btn btn-info btn-block", ng-click="nodo.setCambios()")
                                     | Aplicar
                         div(class="col-sm-6", ng-show="edicionArco")
@@ -99,9 +96,6 @@ block controlador
                                 div(class="form-inline form-group")
                                     | La distancia entre los nodos es:
                                     input(type="number", class="form-control text-center", style="width: 100px; margin-left: 5px; margin-right: 5px;", ng-model="edicionArco.distancia")
-                                div(class="form-group")
-                                    | Información Referencial:
-                                    textarea(class="form-control", rows="6", ng-model="edicionArco.info")
                                 button(class="btn btn-info btn-block", ng-click="arco.setDistancia()") Aplicar
         div(role="tabpanel", class="tab-pane", id="shortestPath")
             div(class="row")
