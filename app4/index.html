@@ -36,7 +36,7 @@
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="#trayectos" data-toggle="tab">Trayectos</a></li>
           <li role="presentation"><a href="#comportamiento" data-toggle="tab">Comportamiento</a></li>
-          <li role="presentation"><a href="#informacion" data-toggle="tab">Información Referencial</a></li>
+          <li role="presentation"><a href="#informacion" data-toggle="tab">Distancia entre Nodos</a></li>
           <li role="presentation"><a href="#shortestPath" data-toggle="tab">Camino más Corto</a></li>
         </ul>
         <div style="background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 25px 10px;" class="tab-content">
@@ -146,8 +146,8 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-8 col-sm-offset-2 well">
-                <div ng-repeat="item in camino" style="display: inline-block;">{{ item }} <i ng-hide="$index +1 == camino.length" class="glyphicon glyphicon-menu-right"></i></div>
+              <div class="col-sm-8 col-sm-offset-2 well well-sm text-center">
+                <h3 ng-repeat="item in camino" style="display: inline-block;">{{ item }} <i ng-hide="$index +1 == camino.length" class="glyphicon glyphicon-menu-right"></i></h3>
               </div>
             </div>
           </div>

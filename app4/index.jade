@@ -18,7 +18,7 @@ block controlador
         li(role="presentation")
             a(href="#comportamiento", data-toggle="tab") Comportamiento
         li(role="presentation")
-            a(href="#informacion", data-toggle="tab") Información Referencial
+            a(href="#informacion", data-toggle="tab") Distancia entre Nodos
         li(role="presentation")
             a(href="#shortestPath", data-toggle="tab") Camino más Corto
 
@@ -111,8 +111,8 @@ block controlador
                         select(class="form-control", ng-options="item.label for item in nodes._data track by item.id", ng-model="nodoFinal")
                         button(ng-click="shortestPath()", class="btn btn-default") Calcular Camino más Corto
             div(class="row")
-                div(class="col-sm-8 col-sm-offset-2 well")
-                    div(ng-repeat="item in camino", style="display: inline-block;")
+                div(class="col-sm-8 col-sm-offset-2 well well-sm text-center")
+                    h3(ng-repeat="item in camino", style="display: inline-block;")
                         {{ item }} 
                         i(class="glyphicon glyphicon-menu-right", ng-hide="$index +1 == camino.length")
 
