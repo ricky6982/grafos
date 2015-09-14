@@ -10,7 +10,6 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bower_components/vis/dist/vis.min.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/redExample.js"></script>
     <script src="../js/dijkstras.js"></script>
   </head>
 </html>
@@ -22,7 +21,7 @@
   <legend class="text-center"> Mejora en la interfaz de usuario para la creación de trayectos.</legend>
   <div ng-controller="AppCtrl" class="container">
     <div class="well well-sm"><strong>Objetivo:</strong>
-       El objetivo en esta version del prototipo es implementar la información referencial segun cada dirección que tenga un nodo hacia los nodos conectados.
+       El objetivo en esta version del prototipo es implementar la información referencial segun la dirección que tenga un nodo hacia sus nodos vecinos.
        La cantidad maxima de conexiones en un nodo intersección hacia otros es de 4, las cuales estaran orientadas segun Izquierda, Derecha, Adelante, Atras.
       <div>Se agregaron las siguientes funciones al prototipo:
         <ul>
@@ -38,6 +37,7 @@
           <li role="presentation"><a href="#comportamiento" data-toggle="tab">Comportamiento</a></li>
           <li role="presentation"><a href="#informacion" data-toggle="tab">Distancia entre Nodos</a></li>
           <li role="presentation"><a href="#shortestPath" data-toggle="tab">Camino más Corto</a></li>
+          <li role="presentation"><a href="#orientacion" data-toggle="tab">Orientación</a></li>
         </ul>
         <div style="background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 25px 10px;" class="tab-content">
           <div role="tabpanel" id="trayectos" class="tab-pane active">
@@ -145,6 +145,38 @@
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2 well well-sm text-center">
                 <h3 ng-repeat="item in camino" style="display: inline-block;">{{ item }} <i ng-hide="$index +1 == camino.length" class="glyphicon glyphicon-menu-right"></i></h3>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" id="orientacion" class="tab-pane">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</h4>
+                <legend>Nodo 1 conectado a:</legend>
+                <ul class="from-group">
+                  <li class="form-inline">Nodo 2 por 
+                    <select class="form-control">
+                      <option value="0">Izquierda</option>
+                      <option value="1">Derecha</option>
+                      <option value="2">Arriba</option>
+                      <option value="3">Abajo</option>
+                    </select>
+                    <div class="checkbox">y representa </div>
+                    <input type="text" style="width: 400px;" placeholder="Ej: Pasillo 1 de boleterias." class="form-control">
+                  </li>
+                </ul>
+                <ul class="form-group">
+                  <li class="form-inline">Nodo 3 por 
+                    <select class="form-control">
+                      <option value="0">Izquierda</option>
+                      <option value="1">Derecha</option>
+                      <option value="2">Arriba</option>
+                      <option value="3">Abajo</option>
+                    </select>
+                    <div class="checkbox">y representa </div>
+                    <input type="text" style="width: 400px;" placeholder="Ej: Pasillo 1 de boleterias." class="form-control">
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
