@@ -12,16 +12,13 @@
   </head>
 </html>
 <body ng-app="app">
-  <blockquote class="page-header">
-    <h1>Creación de Grafos</h1>
-    <footer>Representación de Senderos, Intersecciones y Puntos de Referencia</footer>
-  </blockquote>
+  <header>
+    <h1>Creación del Mapa de Recorridos</h1>
+    <h2>Representación de Senderos, Intersecciones y Puntos de Referencia</h2>
+  </header>
   <legend class="text-center"> Prueba de Libreria Visjs con AngularJs</legend>
   <div ng-controller="AppCtrl" class="container">
-    <div class="row">
-      <div class="panel panel-default">
-        <div id="network" class="panel-body"></div>
-      </div>
+    <div class="well well-sm"><strong>Objetivo:</strong>
     </div>
     <div class="row">
       <div class="well well-sm">
@@ -29,10 +26,16 @@
       </div>
     </div>
     <div class="row">
+      <div class="lead">Mapa de Recorrido:</div>
+      <div class="panel panel-default">
+        <div id="network" class="panel-body"></div>
+      </div>
+    </div>
+    <div class="row">
       <div class="well well-sm">
         <h4>Modelo</h4>
         <ul>
-          <li ng-repeat="node in nodes._data"><strong>Id: </strong> {{ node.id }}<strong>Label:</strong> {{ node.label }}</li>
+          <li ng-repeat="node in nodes._data"><strong>Id: </strong>{{ node.id }}<strong>- Label:</strong>{{ node.label }}</li>
         </ul>
       </div>
     </div>
