@@ -1,18 +1,14 @@
-div(class="row")
-    div(class="col-sm-12")
-        p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
-        div(ng-show="edicionNodo")
-            legend Nodo {{ edicionNodo.id }} conectado a:
-            ul(class="from-group")
-                li(class="form-inline", ng-repeat="item in nodo.conexiones")
-                    | Nodo 
-                    strong " {{ item }} " 
-                    | por 
-                    select(class="form-control", ng-model="edicionNodo.conexiones[item]")
-                        option(disabled selected) --Seleccione una opción--
-                        option(value="0") Arriba
-                        option(value="1") Derecha
-                        option(value="2") Abajo
-                        option(value="3") Izquierda
-            button(class="btn btn-primary", ng-click="nodo.setOrientacion()") Guardar
+p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
+div(ng-show="edicionNodo")
+    legend Nodo {{ edicionNodo.id }} conectado a:
+    div(class="form-group",ng-repeat="item in nodo.conexiones")
+        | Nodo 
+        strong " {{ item }} " 
+        | por 
+        select(class="form-control", ng-model="edicionNodo.conexiones[item]")
+            option(value="3") Izquierda
+            option(value="1") Derecha
+            option(value="0") Arriba
+            option(value="2") Abajo
+    button(class="btn btn-primary btn-block", ng-click="nodo.setOrientacion()") Guardar
 

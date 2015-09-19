@@ -1,25 +1,21 @@
 div(class="row")
+    div(class="form-inline text-center")
+        div(ng-repeat="nodo in trayecto", style="margin-bottom: 15px; display: inline-block")
+            input(type="number", class="form-control text-center", style="width: 75px;", ng-model="nodo.id")
+            label()
+                i(class="glyphicon glyphicon-menu-right", ng-hide="($index + 1) == trayecto.length")
 
-    div(class="col-sm-10 col-xs-9")
-        h3 Trayecto
-        div(class="form-inline text-center")
-            div(ng-repeat="nodo in trayecto", style="margin-bottom: 15px; display: inline-block")
-                input(type="number", class="form-control text-center", style="width: 75px;", ng-model="nodo.id")
-                label()
-                    i(class="glyphicon glyphicon-menu-right", ng-hide="($index + 1) == trayecto.length")
-
-    div(class="col-sm-2 col-xs-3")
-        div(class="text-center")
-            button(class="btn btn-success btn-block", ng-click="nodo.add()") 
-                i(class="glyphicon glyphicon-plus")
-                |  Agregar Nodo
-            button(class="btn btn-danger btn-block", ng-click="nodo.remove()") 
-                i(class="glyphicon glyphicon-minus")
-                |  Quitar Nodo
-            button(class="btn btn-info btn-block", ng-click="trayectoria.clean()") 
-                |  Limpiar Trayecto
-            button(class="btn btn-warning btn-block", ng-click="trayectoria.reestablecer()") 
-                |  Reestablecer
-            button(class="btn btn-primary btn-block", ng-click="trayectoria.crear()") 
-                i(class="glyphicon glyphicon-floppy-disk")
-                |  Crear Trayecto
+div(class="text-center")
+    button(class="btn btn-success btn-block", ng-click="nodo.add()") 
+        i(class="glyphicon glyphicon-plus")
+        |  Agregar Nodo
+    button(class="btn btn-danger btn-block", ng-click="nodo.remove()") 
+        i(class="glyphicon glyphicon-minus")
+        |  Quitar Nodo
+    button(class="btn btn-info btn-block", ng-click="trayectoria.clean()") 
+        |  Limpiar Trayecto
+    button(class="btn btn-warning btn-block", ng-click="trayectoria.reestablecer()") 
+        |  Reestablecer
+    button(class="btn btn-primary btn-block", ng-click="trayectoria.crear()") 
+        i(class="glyphicon glyphicon-floppy-disk")
+        |  Crear Trayecto

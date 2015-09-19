@@ -40,30 +40,25 @@
           <div id="trayectoria" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
               <div class="row">
-                <div class="col-sm-10 col-xs-9">
-                  <h3>Trayecto</h3>
-                  <div class="form-inline text-center">
-                    <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px; display: inline-block">
-                      <input type="number" style="width: 75px;" ng-model="nodo.id" class="form-control text-center">
-                      <label><i ng-hide="($index + 1) == trayecto.length" class="glyphicon glyphicon-menu-right"></i></label>
-                    </div>
+                <div class="form-inline text-center">
+                  <div ng-repeat="nodo in trayecto" style="margin-bottom: 15px; display: inline-block">
+                    <input type="number" style="width: 75px;" ng-model="nodo.id" class="form-control text-center">
+                    <label><i ng-hide="($index + 1) == trayecto.length" class="glyphicon glyphicon-menu-right"></i></label>
                   </div>
                 </div>
-                <div class="col-sm-2 col-xs-3">
-                  <div class="text-center">
-                    <button ng-click="nodo.add()" class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
-                    <button ng-click="nodo.remove()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
-                    <button ng-click="trayectoria.clean()" class="btn btn-info btn-block">
-                       
-                       Limpiar Trayecto
-                    </button>
-                    <button ng-click="trayectoria.reestablecer()" class="btn btn-warning btn-block">
-                       
-                       Reestablecer
-                    </button>
-                    <button ng-click="trayectoria.crear()" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
-                  </div>
-                </div>
+              </div>
+              <div class="text-center">
+                <button ng-click="nodo.add()" class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+                <button ng-click="nodo.remove()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+                <button ng-click="trayectoria.clean()" class="btn btn-info btn-block">
+                   
+                   Limpiar Trayecto
+                </button>
+                <button ng-click="trayectoria.reestablecer()" class="btn btn-warning btn-block">
+                   
+                   Reestablecer
+                </button>
+                <button ng-click="trayectoria.crear()" class="btn btn-primary btn-block"> <i class="glyphicon glyphicon-floppy-disk"></i> Crear Trayecto</button>
               </div>
             </div>
           </div>
@@ -74,24 +69,15 @@
           </div>
           <div id="comportamiento" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h3>Comportamiento del Grafo</h3>
-                  <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" ng-model="comportamiento.movimiento" ng-change="comportamiento.toggleMovimiento()">Deshabilitar Movimiento de Nodos
-                        </label>
-                      </div>
-                      <button ng-click="comportamiento.savePositions()" class="btn btn-info btn-block">Guardar posición de Nodos</button>
-                      <button ng-click="comportamiento.restorePositions()" class="btn btn-info btn-block">Restaurar posición de Nodos</button>
-                      <button ng-click="comportamiento.removeNode()" class="btn btn-danger btn-block">Eliminar Nodo Seleccionado</button>
-                      <button ng-click="comportamiento.removeEdge()" class="btn btn-warning btn-block">Eliminar Arco/s Seleccionado/s</button>
-                    </div>
-                  </div>
-                </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="comportamiento.movimiento" ng-change="comportamiento.toggleMovimiento()">Deshabilitar Movimiento de Nodos
+                </label>
               </div>
+              <button ng-click="comportamiento.savePositions()" class="btn btn-info btn-block">Guardar posición de Nodos</button>
+              <button ng-click="comportamiento.restorePositions()" class="btn btn-info btn-block">Restaurar posición de Nodos</button>
+              <button ng-click="comportamiento.removeNode()" class="btn btn-danger btn-block">Eliminar Nodo Seleccionado</button>
+              <button ng-click="comportamiento.removeEdge()" class="btn btn-warning btn-block">Eliminar Arco/s Seleccionado/s</button>
             </div>
           </div>
         </div>
@@ -101,45 +87,36 @@
           </div>
           <div id="distancia" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="row">
-                    <div ng-hide="edicionNodo || edicionArco" class="col">
-                      <h2 class="text-center">Seleccione un Nodo o Arco para editarlo.</h2>
-                    </div>
-                    <div ng-show="edicionNodo" class="col-sm-6">
-                      <div class="well well-sm">
-                        <div class="form-group text-center"> 
-                          <label>Nodo Seleccionado: {{ edicionNodo.label }}</label>
-                        </div>
-                        <div class="form-inline form-group">Tipo de Nodo: 
-                          <div class="radio">
-                            <label>
-                              <input type="radio" name="tipoNodo" ng-model="edicionNodo.tipo" value="1">Intersección
-                            </label>
-                          </div>
-                          <div class="radio">
-                            <label>
-                              <input type="radio" name="tipoNodo" ng-model="edicionNodo.tipo" value="0">Punto de Referencia
-                            </label>
-                          </div>
-                        </div>
-                        <button ng-click="nodo.setCambios()" class="btn btn-info btn-block">Aplicar</button>
-                      </div>
-                    </div>
-                    <div ng-show="edicionArco" class="col-sm-6">
-                      <div class="well well-sm">
-                        <div class="form-group text-center">
-                          <label>Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.</label>
-                        </div>
-                        <div class="form-inline form-group">La distancia entre los nodos es:
-                          <input type="number" style="width: 100px; margin-left: 5px; margin-right: 5px;" ng-model="edicionArco.distancia" class="form-control text-center">
-                        </div>
-                        <button ng-click="arco.setDistancia()" class="btn btn-info btn-block">Aplicar</button>
-                      </div>
-                    </div>
+              <div ng-hide="edicionNodo || edicionArco">
+                <p class="text-center">Seleccione un Nodo o Arco para editarlo.</p>
+              </div>
+              <div ng-show="edicionNodo">
+                <div class="form-group text-center"> 
+                  <label>Nodo Seleccionado: {{ edicionNodo.label }}</label>
+                </div>
+                <div class="form-inline form-group">Tipo de Nodo: 
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipoNodo" ng-model="edicionNodo.tipo" value="1">Intersección
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipoNodo" ng-model="edicionNodo.tipo" value="0">Punto de Referencia
+                    </label>
                   </div>
                 </div>
+                <button ng-click="nodo.setCambios()" class="btn btn-info btn-block">Aplicar</button>
+              </div>
+              <div ng-show="edicionArco">
+                <div class="form-group text-center">
+                  <label>Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.</label>
+                </div>
+                <div class="form-group text-center">
+                  <p>La distancia entre los nodos es:</p>
+                  <input type="number" style="width: 100px; margin-left: 5px; margin-right: 5px;" ng-model="edicionArco.distancia" class="form-control text-center">
+                </div>
+                <button ng-click="arco.setDistancia()" class="btn btn-info btn-block">Aplicar</button>
               </div>
             </div>
           </div>
@@ -150,21 +127,15 @@
           </div>
           <div id="shortestPath" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-inline text-center form-group">
-                    <label>Nodo Inicial</label>
-                    <select ng-options="item.label for item in nodes._data track by item.id" ng-model="nodoInicial" class="form-control"></select>
-                    <label>Nodo Final</label>
-                    <select ng-options="item.label for item in nodes._data track by item.id" ng-model="nodoFinal" class="form-control"></select>
-                    <button ng-click="shortestPath()" class="btn btn-default">Calcular Camino más Corto</button>
-                  </div>
-                </div>
+              <div class="form-inline text-center form-group">
+                <label>Nodo Inicial</label>
+                <select ng-options="item.label for item in nodes._data track by item.id" ng-model="nodoInicial" class="form-control"></select>
+                <label>Nodo Final</label>
+                <select ng-options="item.label for item in nodes._data track by item.id" ng-model="nodoFinal" class="form-control"></select>
+                <button ng-click="shortestPath()" class="btn btn-default">Calcular Camino más Corto</button>
               </div>
-              <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 well well-sm text-center">
-                  <h3 ng-repeat="item in camino" style="display: inline-block;">{{ item }} <i ng-hide="$index +1 == camino.length" class="glyphicon glyphicon-menu-right"></i></h3>
-                </div>
+              <div class="well well-sm text-center">
+                <h3 ng-repeat="item in camino" style="display: inline-block;">{{ item }} <i ng-hide="$index +1 == camino.length" class="glyphicon glyphicon-menu-right"></i></h3>
               </div>
             </div>
           </div>
@@ -175,25 +146,18 @@
           </div>
           <div id="orientacion" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-12">
-                  <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
-                  <div ng-show="edicionNodo">
-                    <legend>Nodo {{ edicionNodo.id }} conectado a:</legend>
-                    <ul class="from-group">
-                      <li ng-repeat="item in nodo.conexiones" class="form-inline">Nodo <strong>" {{ item }} " </strong>por 
-                        <select ng-model="edicionNodo.conexiones[item]" class="form-control">
-                          <option disabled selected>--Seleccione una opción--</option>
-                          <option value="0">Arriba</option>
-                          <option value="1">Derecha</option>
-                          <option value="2">Abajo</option>
-                          <option value="3">Izquierda</option>
-                        </select>
-                      </li>
-                    </ul>
-                    <button ng-click="nodo.setOrientacion()" class="btn btn-primary">Guardar</button>
-                  </div>
+              <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
+              <div ng-show="edicionNodo">
+                <legend>Nodo {{ edicionNodo.id }} conectado a:</legend>
+                <div ng-repeat="item in nodo.conexiones" class="form-group">Nodo <strong>" {{ item }} " </strong>por 
+                  <select ng-model="edicionNodo.conexiones[item]" class="form-control">
+                    <option value="3">Izquierda</option>
+                    <option value="1">Derecha</option>
+                    <option value="0">Arriba</option>
+                    <option value="2">Abajo</option>
+                  </select>
                 </div>
+                <button ng-click="nodo.setOrientacion()" class="btn btn-primary btn-block">Guardar</button>
               </div>
             </div>
           </div>
