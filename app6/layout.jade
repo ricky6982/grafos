@@ -28,27 +28,28 @@ body(ng-app="app")
             strong Objetivo:
             block objetivo
 
+    div(class="row", style="margin: 10px;")
         //- Panel de Controles para la creación de Nodos
-        div(class="row")
+        div(class="col-sm-4 col-md-3")
             div(class="well well-sm")
                 h4(class="text-center") Controles
                 block controlador
 
         //- Contenedor Canvas para la Red
-        div(class="row")
+        div(class="col-sm-8 col-md-9")
             div(class="lead") Mapa de Recorrido:
             div(class="panel panel-default")
                 div(id="network", class="panel-body")
                     
-
+    
+    div(class="row", style="margin: 10px")
         block contenedor
-            div(class="row")
-                div(class="well well-sm")
-                    h4 Modelo
-                    ul
-                        li(ng-repeat="node in nodes._data")
-                            strong Id: 
-                            | {{ node.id }}
-                            strong - Label:
-                            | {{ node.label }}
+            div(class="well well-sm")
+                h4 Modelo
+                ul
+                    li(ng-repeat="node in nodes._data")
+                        strong Id: 
+                        | {{ node.id }}
+                        strong - Label:
+                        | {{ node.label }}
 
