@@ -1,1 +1,20 @@
-bower_components/
+bower_components/*
+
+# Librerias necesarias para el funcionamiento desde GitHub Pages
+
+!bower_components/angular
+bower_components/angular/*.*
+!bower_components/angular/angular.min.js
+!bower_components/angular/angular.min.js.map
+
+!bower_components/bootstrap
+bower_components/bootstrap/*
+!bower_components/bootstrap/dist
+
+!bower_components/jquery
+bower_components/jquery/*
+!bower_components/jquery/dist
+
+!bower_components/vis
+bower_components/vis/*
+!bower_components/vis/dist
