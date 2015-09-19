@@ -1,5 +1,15 @@
 extend layout.jade
 
+mixin tabCollapse(title, id)
+    - var href = '#'+id
+    div(class="panel panel-default")
+        div(class="panel-heading", role="tab")
+            h4(class="panel-title")
+                a(role="button", data-toggle="collapse", data-parent="#accordion", href=href, aria-expanded="true", aria-controls="trayectoria")=title
+        div(id=id, class="panel-collapse collapse", role="tabpanel", aria-labelledby="Trayectorias")
+            div(class="panel-body")
+                block
+
 block javascripts
     script(src="js/app.js")
     script(src="../js/dijkstras.js")
@@ -12,30 +22,14 @@ block objetivo
     include ./objetivo.jade
 
 block controlador
-    ul(class="nav nav-tabs")
-        li(role="presentation" class="active")
-            a(href="#trayectos", data-toggle="tab") Trayectos
-        li(role="presentation")
-            a(href="#comportamiento", data-toggle="tab") Comportamiento
-        li(role="presentation")
-            a(href="#informacion", data-toggle="tab") Distancia entre Nodos
-        li(role="presentation")
-            a(href="#shortestPath", data-toggle="tab") Camino más Corto
-        li(role="presentation")
-            a(href="#orientacion", data-toggle="tab") Orientación
-
-    div(class="tab-content", style="background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 25px 10px;")
-        div(role="tabpanel", class="tab-pane active", id="trayectos")
+    div(class="panel-group" id="accordion", role="tablist", aria-multiselectable="true")
+        +tabCollapse('Trayectorias', 'trayectoria')
             include partials/_trayectoria.jade
-
-        div(role="tabpanel", class="tab-pane", id="comportamiento")
+        +tabCollapse('Comportamiento', 'comportamiento')
             include partials/_comportamiento.jade
-
-        div(role="tabpanel", class="tab-pane", id="informacion")
+        +tabCollapse('Distancia entre Nodos', 'distancia')
             include partials/_distancia.jade
-
-        div(role="tabpanel", class="tab-pane", id="shortestPath")
+        +tabCollapse('Camino más Corto', 'shortestPath')
             include partials/_shortestPath.jade
-
-        div(role="tabpanel", class="tab-pane", id="orientacion")
+        +tabCollapse('Orientación', 'orientacion')
             include partials/_orientacion.jade
