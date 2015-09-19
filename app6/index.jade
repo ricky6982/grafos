@@ -1,0 +1,136 @@
+extend layout.jade
+
+block javascripts
+    script(src="js/app.js")
+    script(src="../js/dijkstras.js")
+    script(src="js/redExample.js")
+
+block titulo
+    | Mejora en la interfaz de usuario para la creación de trayectos.
+
+block objetivo
+    include ./objetivo.jade
+
+block controlador
+    ul(class="nav nav-tabs")
+        li(role="presentation" class="active")
+            a(href="#trayectos", data-toggle="tab") Trayectos
+        li(role="presentation")
+            a(href="#comportamiento", data-toggle="tab") Comportamiento
+        li(role="presentation")
+            a(href="#informacion", data-toggle="tab") Distancia entre Nodos
+        li(role="presentation")
+            a(href="#shortestPath", data-toggle="tab") Camino más Corto
+        li(role="presentation")
+            a(href="#orientacion", data-toggle="tab") Orientación
+
+    div(class="tab-content", style="background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 25px 10px;")
+        div(role="tabpanel", class="tab-pane active", id="trayectos")
+            div(class="row")
+                div(class="col-sm-10 col-xs-9")
+                    h3 Trayecto
+                    div(class="form-inline text-center")
+                        div(ng-repeat="nodo in trayecto", style="margin-bottom: 15px; display: inline-block")
+                            input(type="number", class="form-control text-center", style="width: 75px;", ng-model="nodo.id")
+                            label()
+                                i(class="glyphicon glyphicon-menu-right", ng-hide="($index + 1) == trayecto.length")
+                div(class="col-sm-2 col-xs-3")
+                    div(class="text-center")
+                        button(class="btn btn-success btn-block", ng-click="nodo.add()") 
+                            i(class="glyphicon glyphicon-plus")
+                            |  Agregar Nodo
+                        button(class="btn btn-danger btn-block", ng-click="nodo.remove()") 
+                            i(class="glyphicon glyphicon-minus")
+                            |  Quitar Nodo
+                        button(class="btn btn-info btn-block", ng-click="trayectoria.clean()") 
+                            |  Limpiar Trayecto
+                        button(class="btn btn-warning btn-block", ng-click="trayectoria.reestablecer()") 
+                            |  Reestablecer
+                        button(class="btn btn-primary btn-block", ng-click="trayectoria.crear()") 
+                            i(class="glyphicon glyphicon-floppy-disk")
+                            |  Crear Trayecto
+
+        div(role="tabpanel", class="tab-pane", id="comportamiento")
+            div(class="row")
+                div(class="col-sm-12")
+                    h3 Comportamiento del Grafo
+                    div(class="row")
+                        div(class="col-sm-6 col-sm-offset-3")
+                            div(class="checkbox")
+                                label
+                                    input(type="checkbox", ng-model="comportamiento.movimiento", ng-change="comportamiento.toggleMovimiento()")
+                                    | Deshabilitar Movimiento de Nodos
+                            button(class="btn btn-info btn-block", ng-click="comportamiento.savePositions()")
+                                | Guardar posición de Nodos
+                            button(class="btn btn-info btn-block", ng-click="comportamiento.restorePositions()")
+                                | Restaurar posición de Nodos
+                            button(class="btn btn-danger btn-block", ng-click="comportamiento.removeNode()")
+                                | Eliminar Nodo Seleccionado
+                            button(class="btn btn-warning btn-block", ng-click="comportamiento.removeEdge()")
+                                | Eliminar Arco/s Seleccionado/s
+
+        div(role="tabpanel", class="tab-pane", id="informacion")
+            div(class="row")
+                div(class="col-sm-12")
+                    div(class="row")
+                        div(class="col", ng-hide="edicionNodo || edicionArco")
+                            h2(class="text-center") Seleccione un Nodo o Arco para editarlo.
+                        div(class="col-sm-6", ng-show="edicionNodo")
+                            div(class="well well-sm")
+                                div(class="form-group text-center") 
+                                    label Nodo Seleccionado: {{ edicionNodo.label }}
+                                div(class="form-inline form-group")
+                                    | Tipo de Nodo: 
+                                    div(class="radio")
+                                        label
+                                            input(type="radio", name="tipoNodo", ng-model="edicionNodo.tipo", value="1")
+                                            | Intersección
+                                    div(class="radio")
+                                        label
+                                            input(type="radio", name="tipoNodo", ng-model="edicionNodo.tipo", value="0")
+                                            | Punto de Referencia
+                                button(class="btn btn-info btn-block", ng-click="nodo.setCambios()")
+                                    | Aplicar
+                        div(class="col-sm-6", ng-show="edicionArco")
+                            div(class="well well-sm")
+                                div(class="form-group text-center")
+                                    label Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.
+                                div(class="form-inline form-group")
+                                    | La distancia entre los nodos es:
+                                    input(type="number", class="form-control text-center", style="width: 100px; margin-left: 5px; margin-right: 5px;", ng-model="edicionArco.distancia")
+                                button(class="btn btn-info btn-block", ng-click="arco.setDistancia()") Aplicar
+
+        div(role="tabpanel", class="tab-pane", id="shortestPath")
+            div(class="row")
+                div(class="col-sm-12")
+                    div(class="form-inline text-center form-group")
+                        label Nodo Inicial
+                        select(class="form-control", ng-options="item.label for item in nodes._data track by item.id", ng-model="nodoInicial")
+                        label Nodo Final
+                        select(class="form-control", ng-options="item.label for item in nodes._data track by item.id", ng-model="nodoFinal")
+                        button(ng-click="shortestPath()", class="btn btn-default") Calcular Camino más Corto
+            div(class="row")
+                div(class="col-sm-8 col-sm-offset-2 well well-sm text-center")
+                    h3(ng-repeat="item in camino", style="display: inline-block;")
+                        | {{ item }} 
+                        i(class="glyphicon glyphicon-menu-right", ng-hide="$index +1 == camino.length")
+
+        div(role="tabpanel", class="tab-pane", id="orientacion")
+            div(class="row")
+                div(class="col-sm-12")
+                    p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
+                    div(ng-show="edicionNodo")
+                        legend Nodo {{ edicionNodo.id }} conectado a:
+                        ul(class="from-group")
+                            li(class="form-inline", ng-repeat="item in nodo.conexiones")
+                                | Nodo 
+                                strong " {{ item }} " 
+                                | por 
+                                select(class="form-control", ng-model="edicionNodo.conexiones[item]")
+                                    option(disabled selected) --Seleccione una opción--
+                                    option(value="0") Arriba
+                                    option(value="1") Derecha
+                                    option(value="2") Abajo
+                                    option(value="3") Izquierda
+                        button(class="btn btn-primary", ng-click="nodo.setOrientacion()") Guardar
+
