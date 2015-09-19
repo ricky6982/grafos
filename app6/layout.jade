@@ -13,7 +13,7 @@ html
         block javascripts
             
 
-body(ng-app="app")
+body(ng-app="app" ng-controller="AppCtrl")
     header
         h1 Creación del Mapa de Recorridos
         h2 Representación de Senderos, Intersecciones y Puntos de Referencia
@@ -22,7 +22,7 @@ body(ng-app="app")
         block titulo
             | Prueba de Libreria Visjs con AngularJs
 
-    div(class="container" ng-controller="AppCtrl")
+    div(class="container")
         //- Descripción del Prototipo
         div(class="well well-sm")
             strong Objetivo:
