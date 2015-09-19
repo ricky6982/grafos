@@ -3,6 +3,7 @@ extend ../layout.jade
 block javascripts
     script(src="js/app.js")
     script(src="../js/dijkstras.js")
+    script(src="js/redExample.js")
 
 block titulo
     | Mejora en la interfaz de usuario para la creación de trayectos.
@@ -111,29 +112,25 @@ block controlador
             div(class="row")
                 div(class="col-sm-8 col-sm-offset-2 well well-sm text-center")
                     h3(ng-repeat="item in camino", style="display: inline-block;")
-                        {{ item }} 
+                        | {{ item }} 
                         i(class="glyphicon glyphicon-menu-right", ng-hide="$index +1 == camino.length")
 
         div(role="tabpanel", class="tab-pane", id="orientacion")
             div(class="row")
                 div(class="col-sm-12")
-                    h4 Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
-                    legend Nodo 1 conectado a:
-                    ul(class="from-group")
-                        li(class="form-inline") Nodo 2 por 
-                            select(class="form-control")
-                                option(value="0") Izquierda
-                                option(value="1") Derecha
-                                option(value="2") Arriba
-                                option(value="3") Abajo
-                            div(class="checkbox") y representa 
-                            input(type="text", class="form-control", style="width: 400px;", placeholder="Ej: Pasillo 1 de boleterias.")
-                    ul(class="form-group")
-                        li(class="form-inline") Nodo 3 por 
-                            select(class="form-control")
-                                option(value="0") Izquierda
-                                option(value="1") Derecha
-                                option(value="2") Arriba
-                                option(value="3") Abajo
-                            div(class="checkbox") y representa 
-                            input(type="text", class="form-control", style="width: 400px;", placeholder="Ej: Pasillo 1 de boleterias.")
+                    p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
+                    div(ng-show="edicionNodo")
+                        legend Nodo {{ edicionNodo.id }} conectado a:
+                        ul(class="from-group")
+                            li(class="form-inline", ng-repeat="item in nodo.conexiones")
+                                | Nodo 
+                                strong " {{ item }} " 
+                                | por 
+                                select(class="form-control", ng-model="edicionNodo.conexiones[item]")
+                                    option(disabled selected) --Seleccione una opción--
+                                    option(value="0") Arriba
+                                    option(value="1") Derecha
+                                    option(value="2") Abajo
+                                    option(value="3") Izquierda
+                        button(class="btn btn-primary", ng-click="nodo.setOrientacion()") Guardar
+

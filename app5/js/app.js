@@ -46,9 +46,13 @@ app.controller('AppCtrl',[
                     if ($scope.edicionNodo.tipo === undefined) {
                         $scope.edicionNodo.tipo = 1;
                     }
+                    $scope.nodo.conexiones = network.getConnectedNodes($scope.edicionNodo.id);
                 },0);
             },
             setCambios: function(){
+                $scope.nodes.update($scope.edicionNodo);
+            },
+            setOrientacion: function(){
                 $scope.nodes.update($scope.edicionNodo);
             }
         };
