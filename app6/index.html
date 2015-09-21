@@ -116,6 +116,10 @@
                   <p>La distancia entre los nodos es:</p>
                   <input type="number" ng-model="edicionArco.distancia" class="form-control text-center">
                 </div>
+                <div class="form-group text-center">
+                  <p>El arco representa:</p>
+                  <input type="text" ng-model="edicionArco.infRef" placeholder="Ej: Pasillo principal" class="form-control">
+                </div>
                 <button ng-click="arco.setDistancia()" class="btn btn-primary btn-block">Aplicar</button>
               </div>
             </div>
