@@ -1,0 +1,54 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title Practica de Creación de Grafos
+        link(rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="../css/main.css")
+
+        script(src="../bower_components/jquery/dist/jquery.js")
+        script(src="../bower_components/angular/angular.min.js")
+        script(src="../bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(src="../bower_components/vis/dist/vis.min.js")
+        block javascripts
+            
+
+body(ng-app="app" ng-controller="AppCtrl")
+    header
+        h1 Creación del Mapa de Recorridos
+        h2 Representación de Senderos, Intersecciones y Puntos de Referencia
+
+    legend(class="text-center") 
+        block titulo
+            | Prueba de Libreria Visjs con AngularJs
+
+    div(class="container")
+        //- Descripción del Prototipo
+        div(class="well well-sm")
+            strong Objetivo:
+            block objetivo
+
+    div(class="row", style="margin: 10px;")
+        //- Panel de Controles para la creación de Nodos
+        div(class="col-sm-4 col-md-3")
+            h4(class="text-center") Controles
+            block controlador
+
+        //- Contenedor Canvas para la Red
+        div(class="col-sm-8 col-md-9")
+            div(class="lead") Mapa de Recorrido:
+            div(class="panel panel-default")
+                div(id="network", class="panel-body")
+                    
+    
+    div(class="row", style="margin: 10px")
+        block contenedor
+            div(class="well well-sm")
+                h4 Modelo
+                ul
+                    li(ng-repeat="node in nodes._data")
+                        strong Id: 
+                        | {{ node.id }}
+                        strong - Label:
+                        | {{ node.label }}
+

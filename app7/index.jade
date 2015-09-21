@@ -1,0 +1,35 @@
+extend layout.jade
+
+mixin tabCollapse(title, id)
+    - var href = '#'+id
+    div(class="panel panel-default")
+        div(class="panel-heading", role="tab")
+            h4(class="panel-title")
+                a(role="button", data-toggle="collapse", data-parent="#accordion", href=href, aria-expanded="true", aria-controls="trayectoria")=title
+        div(id=id, class="panel-collapse collapse", role="tabpanel", aria-labelledby="Trayectorias")
+            div(class="panel-body")
+                block
+
+block javascripts
+    script(src="js/app.js")
+    script(src="../js/dijkstras.js")
+    script(src="js/redExample.js")
+
+block titulo
+    | Mejora en la interfaz de usuario para la creación de trayectos.
+
+block objetivo
+    include ./objetivo.jade
+
+block controlador
+    div(class="panel-group" id="accordion", role="tablist", aria-multiselectable="true")
+        +tabCollapse('Trayectorias', 'trayectoria')
+            include partials/_trayectoria.jade
+        +tabCollapse('Comportamiento', 'comportamiento')
+            include partials/_comportamiento.jade
+        +tabCollapse('Distancia entre Nodos', 'distancia')
+            include partials/_distancia.jade
+        +tabCollapse('Camino más Corto', 'shortestPath')
+            include partials/_shortestPath.jade
+        +tabCollapse('Orientación', 'orientacion')
+            include partials/_orientacion.jade

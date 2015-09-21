@@ -1,0 +1,29 @@
+div(ng-hide="edicionNodo || edicionArco")
+    p(class="text-center") Seleccione un Nodo o Arco para editarlo.
+
+div(ng-show="edicionNodo")
+    div(class="form-group text-center") 
+        label Nodo Seleccionado: {{ edicionNodo.label }}
+    div(class="form-group")
+        | Tipo de Nodo: 
+    div(class="radio")
+        label
+            input(type="radio", name="tipoNodo", ng-model="edicionNodo.tipo", value="1")
+            | Intersección
+        div(class="radio")
+            label
+                input(type="radio", name="tipoNodo", ng-model="edicionNodo.tipo", value="0")
+                | Punto de Referencia
+    button(class="btn btn-info btn-block", ng-click="nodo.setCambios()")
+        | Aplicar
+
+div(ng-show="edicionArco")
+    div(class="form-group text-center")
+        label Arco Seleccionado desde Nodo {{ edicionArco.from }} al {{ edicionArco.to}}.
+    div(class="form-group text-center")
+        p La distancia entre los nodos es:
+        input(type="number", class="form-control text-center", ng-model="edicionArco.distancia")
+    div(class="form-group text-center")
+        p El arco representa:
+        input(type="text", class="form-control", ng-model="edicionArco.infRef", placeholder="Ej: Pasillo principal")
+    button(class="btn btn-primary btn-block", ng-click="arco.setDistancia()") Aplicar
