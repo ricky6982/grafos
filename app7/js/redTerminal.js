@@ -5,4 +5,7 @@ $('document').ready(function(){
     angular.forEach(edgesTerminal, function(value, key){
         deb.edges.add(value);
     });
+
+    network.setOptions({nodes: {physics: false }});
+
 });
