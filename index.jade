@@ -1,3 +1,12 @@
+mixin boxPrototype(title, folder)
+    -var link = folder + "/index.html"
+    div(class="col-sm-6") 
+        div(class="well")
+            legend(class="text-center")=title
+            block
+            p(class="text-center")
+                a(href=link, class="btn btn-primary") Ir al Prototipo
+
 doctype html
 html
     head
@@ -24,51 +33,23 @@ body(ng-app="app")
                     include ./docs/about.jade
                     
         div(class="row")
-            div(class="col-sm-6") 
-                div(class="well")
-                    legend(class="text-center") Prototipo 1
-                    include ./app0/objetivo.jade
-                    p(class="text-center")
-                        a(href="app0/index.html", class="btn btn-primary") Ir al Prototipo
-            div(class="col-sm-6")
-                div(class="well")
-                    legend(class="text-center") Prototipo 2
-                    include ./app1/objetivo.jade
-                    p(class="text-center")
-                        a(href="app1/index.html", class="btn btn-primary") Ir al Prototipo
+            +boxPrototype('Prototipo 1', 'app0')
+                include ./app0/objetivo.jade
+            +boxPrototype('Prototipo 2', 'app1')
+                include ./app1/objetivo.jade
 
         div(class="row")
-            div(class="col-sm-6")
-                div(class="well")
-                    legend(class="text-center") Prototipo 3
-                    include ./app2/objetivo.jade
-                    p(class="text-center")
-                        a(href="app2/index.html", class="btn btn-primary") Ir al Prototipo
-            div(class="col-sm-6")
-                div(class="well")
-                    legend(class="text-center") Prototipo 4
-                    include ./app3/objetivo.jade
-                    p(class="text-center")
-                        a(href="app3/index.html", class="btn btn-primary") Ir al Prototipo
+            +boxPrototype('Prototipo 3', 'app2')
+                include ./app2/objetivo.jade
+            +boxPrototype('Prototipo 4', 'app3')
+                include ./app3/objetivo.jade
 
         div(class="row")
-            div(class="col-sm-6")
-                div(class="well")
-                    legend(class="text-center") Prototipo 5
-                    include ./app4/objetivo.jade
-                    p(class="text-center")
-                        a(href="app4/index.html", class="btn btn-primary") Ir al Prototipo
-            div(class="col-sm-6")
-                div(class="well")
-                    legend(class="text-center") Prototipo 6
-                    include ./app5/objetivo.jade
-                    p(class="text-center")
-                        a(href="app5/index.html", class="btn btn-primary") Ir al Prototipo
+            +boxPrototype('Prototipo 5', 'app4')
+                include ./app4/objetivo.jade
+            +boxPrototype('Prototipo 6', 'app5')
+                include ./app5/objetivo.jade
 
          div(class="row")
-            div(class="col-sm-6")
-                div(class="well")
-                    legend(class="text-center") Prototipo 7
-                    include ./app6/objetivo.jade
-                    p(class="text-center")
-                        a(href="app6/index.html", class="btn btn-primary") Ir al Prototipo
+            +boxPrototype('Prototipo 7', 'app6')
+                include ./app6/objetivo.jade
