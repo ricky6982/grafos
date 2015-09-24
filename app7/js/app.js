@@ -15,7 +15,7 @@ app.controller('AppCtrl',[
         network = new vis.Network($scope.container, $scope.data, $scope.options);
 
         // Definición de Variables para la depuración por Consola
-        deb = {
+        dbg = {
             nodes: $scope.nodes,
             edges: $scope.edges,
             data: $scope.data,

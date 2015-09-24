@@ -1,0 +1,61 @@
+Controller Network
+    - Definición de la Red
+
+    - Variables:
+        - nodoEdit: (Object) es una copia del nodo seleccionado en la red, al cual se le agrega o modifica información para luego realizar un update del nodo en la red.
+        - arcoEdit: (Object) es una copia del arco seleccionado en la red, al cual se le agrega o modifica información para luego realizar un update del arco en la red.
+        - cantidadNodos: (int) almacena la cantidad de nodos que hay actualmente en la red.
+        - cantidadArcos: (int) almacena la cantidad de arcos que hay actualmente en la red.
+
+    - Eventos
+        Detectar evento de Selección de Nodo.
+        Detectar evento de Selección de Arco.
+        Detectar evento de Click con el mouse.
+
+    - Trayecto
+        - addField(): Creación de campos de formulario de nodos a crear
+
+        - removeField(): Eliminar campo de formulario si la cantidad de campos es mayor a 2.
+
+        - restore(): Restablecer campos de formulario
+
+        - clearForm(): Poner en blanco los campos del formulario de trayecto.
+
+        - countNodos(): Cantidad de Nodos en la red
+
+        - countArcos(): Cantidad de Nodos en la red
+
+        - crearTrayecto(): Creación de la red
+            - Si existen campos en blanco al final se puede crear la red sin tener en cuenta los campos en blanco
+            - Si existen campos en blanco en el medio no crear red
+            - Verificar existencia de un nodo 
+            - Verificar conexión entre dos nodos
+
+    - Edición
+        nodo: {
+            - addNodo(codoDeConexión): Agregar nodo y crear una conexión con un nodo seleccionado, el Id del nuevo nodo sera el n+1 (siendo n el ultimo nodo actual en la red)
+            - remove(): Elimina el nodo seleccionado
+            - update(): Actualiza la información del nodo seleccionado
+        }
+
+        arco: {
+            - remove(): Elimina el o los arcos seleccionados.
+            - update(): Actualiza la información del arco seleccionado.
+        }
+
+    - Comportamiento: {
+            toggleMovimiento(): Habilita/Deshabilita el movimiento de los nodos.
+            savePositions(): guarda las posiciones de los nodos.
+            restorePositions(): recupera las posiciones que fue guardada de cada nodo.
+        }
+
+    - Calculo del Camino más corto
+
+    - Orientacion: 
+        - updateOrientacionVecinos(nodoSeleccionado)
+        - verificarOrientacion(): Verifica que haya coherencia entre las conexiones de nodos respecto a su posicion entre cada uno de ellos.
+            Ejmplo: Nodo1 conectado al Nodo2 por Izquierda => Nodo2 conectado al Nodo1 por Derecha.
+                    Nodo1 conectado al Nodo3 por Arriba => Nodo3 conectado al Nodo1 por Abajo.
+
+    - Validación de la Red
+
