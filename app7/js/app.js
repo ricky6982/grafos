@@ -4,6 +4,7 @@ app.controller('AppCtrl',[
     '$scope', '$timeout', '$filter',
     function($scope, $timeout, $filter){
 
+        // =============================
         // Definición de Grafo con VisJs
         // =============================
         $scope.nodes = new vis.DataSet([]);
@@ -16,6 +17,7 @@ app.controller('AppCtrl',[
         };
         network = new vis.Network($scope.container, $scope.data, $scope.options);
 
+        // =======================
         // Definición de Variables
         // =======================
         dbg = {
@@ -31,14 +33,15 @@ app.controller('AppCtrl',[
         $scope.cantidadNodos = 0;
         $scope.cantidadArcos = 0;
 
+        // ==============================
         // Detección de Eventos en la red
         // ==============================
         network.on('selectEdge', function(){
-            $scope.arco.getSeleccionado();
+            $scope.arco.getSelected();
         });
 
         network.on('selectNode', function(){
-            $scope.nodo.getSeleccionado();
+            $scope.nodo.getSelected();
         });
 
         network.on('click', function(){
@@ -54,6 +57,7 @@ app.controller('AppCtrl',[
             }
         });
 
+        // ===========
         // Trayectoria
         // ===========
         $scope.trayecto = [
@@ -112,27 +116,9 @@ app.controller('AppCtrl',[
             }
         };
 
-        // Funciones para los controles de creación de Trayecto
-        $scope.nodo = {
-            getSeleccionado: function(){
-                $timeout(function(){
-                    $scope.nodoEdit = $scope.nodes.get(network.getSelectedNodes()[0]);
-                    if ($scope.nodoEdit.tipo === undefined) {
-                        $scope.nodoEdit.tipo = 1;
-                    }
-                    $scope.nodo.conexiones = network.getConnectedNodes($scope.nodoEdit.id);
-                },0);
-            },
-            setCambios: function(){
-                $scope.nodes.update($scope.nodoEdit);
-            },
-            setOrientacion: function(){
-                $scope.nodes.update($scope.nodoEdit);
-            }
-        };
-
-
-        // Funciones para los controles del comportamiento del Grafo.
+        // ========================
+        // Comportamiento del Grafo
+        // ========================
         $scope.comportamiento = {
             movimiento: false,
             
@@ -141,22 +127,6 @@ app.controller('AppCtrl',[
                     network.setOptions({nodes: {physics: false }});
                 }else{
                     network.setOptions({nodes: {physics: true }});
-                }
-            },
-
-            removeNode: function(){
-                if (window.confirm('¿Esta seguro de que quiere eliminar el nodo '+network.getSelectedNodes()+' ?')) {
-                    console.log(network.getSelectedNodes());
-                    console.log('Eliminando Nodo');
-                    $scope.nodes.remove(network.getSelectedNodes());
-                }
-            },
-
-            removeEdge: function(){
-                if (window.confirm('¿Esta seguro de que quiere elimnar los arcos seleccionados?')) {
-                    console.log(network.getSelectedEdges());
-                    console.log('Eliminando Arco');
-                    $scope.edges.remove(network.getSelectedEdges());
                 }
             },
 
@@ -174,9 +144,35 @@ app.controller('AppCtrl',[
             }
         };
 
-                // Funcion de Manipulación de Arcos
+        // =================
+        // Edición de la Red
+        // =================
+        $scope.nodo = {
+            getSelected: function(){
+                $timeout(function(){
+                    $scope.nodoEdit = $scope.nodes.get(network.getSelectedNodes()[0]);
+                    if ($scope.nodoEdit.tipo === undefined) {
+                        $scope.nodoEdit.tipo = 1;
+                    }
+                    $scope.nodo.conexiones = network.getConnectedNodes($scope.nodoEdit.id);
+                },0);
+            },
+
+            remove: function(){
+                if (window.confirm('¿Esta seguro de que quiere eliminar el nodo '+network.getSelectedNodes()+' ?')) {
+                    console.log(network.getSelectedNodes());
+                    console.log('Eliminando Nodo');
+                    $scope.nodes.remove(network.getSelectedNodes());
+                }
+            },
+
+            update: function(){
+                $scope.nodes.update($scope.nodoEdit);
+            }
+        };
+
         $scope.arco = {
-            getSeleccionado: function(){
+            getSelected: function(){
                 if (network.getSelectedEdges().length == 1) {
                     $timeout(function(){
                         $scope.arcoEdit = $scope.edges.get(network.getSelectedEdges()[0]);
@@ -188,6 +184,15 @@ app.controller('AppCtrl',[
                     console.log('se selecciono varios');
                 }
             },
+
+            remove: function(){
+                if (window.confirm('¿Esta seguro de que quiere elimnar los arcos seleccionados?')) {
+                    console.log(network.getSelectedEdges());
+                    console.log('Eliminando Arco');
+                    $scope.edges.remove(network.getSelectedEdges());
+                }
+            },
+
 
             setDistancia: function(){
                 $scope.arcoEdit.label = $scope.arcoEdit.distancia;

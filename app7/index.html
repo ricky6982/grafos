@@ -78,8 +78,8 @@
               </div>
               <button ng-click="comportamiento.savePositions()" class="btn btn-info btn-block">Guardar posición de Nodos</button>
               <button ng-click="comportamiento.restorePositions()" class="btn btn-info btn-block">Restaurar posición de Nodos</button>
-              <button ng-click="comportamiento.removeNode()" class="btn btn-danger btn-block">Eliminar Nodo Seleccionado</button>
-              <button ng-click="comportamiento.removeEdge()" class="btn btn-warning btn-block">Eliminar Arco/s Seleccionado/s</button>
+              <button ng-click="nodo.remove()" class="btn btn-danger btn-block">Eliminar Nodo Seleccionado</button>
+              <button ng-click="arco.remove()" class="btn btn-warning btn-block">Eliminar Arco/s Seleccionado/s</button>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@
                     </label>
                   </div>
                 </div>
-                <button ng-click="nodo.setCambios()" class="btn btn-info btn-block">Aplicar</button>
+                <button ng-click="nodo.update()" class="btn btn-info btn-block">Aplicar</button>
               </div>
               <div ng-show="arcoEdit">
                 <div class="form-group text-center">
@@ -156,17 +156,17 @@
           <div id="orientacion" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
               <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
-              <div ng-show="edicionNodo">
-                <legend>Nodo {{ edicionNodo.id }} conectado a:</legend>
+              <div ng-show="nodoEdit">
+                <legend>Nodo {{ nodoEdit.id }} conectado a:</legend>
                 <div ng-repeat="item in nodo.conexiones" class="form-group">Nodo <strong>" {{ item }} " </strong>por 
-                  <select ng-model="edicionNodo.conexiones[item]" class="form-control">
+                  <select ng-model="nodoEdit.conexiones[item]" class="form-control">
                     <option value="3">Izquierda</option>
                     <option value="1">Derecha</option>
                     <option value="0">Arriba</option>
                     <option value="2">Abajo</option>
                   </select>
                 </div>
-                <button ng-click="nodo.setOrientacion()" class="btn btn-primary btn-block">Guardar</button>
+                <button ng-click="nodo.update()" class="btn btn-primary btn-block">Guardar</button>
               </div>
             </div>
           </div>

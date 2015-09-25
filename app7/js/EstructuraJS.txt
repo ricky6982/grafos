@@ -36,11 +36,13 @@ Controller Network
             - addNodo(codoDeConexión): Agregar nodo y crear una conexión con un nodo seleccionado, el Id del nuevo nodo sera el n+1 (siendo n el ultimo nodo actual en la red)
             - remove(): Elimina el nodo seleccionado
             - update(): Actualiza la información del nodo seleccionado
+            - getSelected(): establece al nodo seleccionado como valor de la variable nodoEdit.
         }
 
         arco: {
             - remove(): Elimina el o los arcos seleccionados.
             - update(): Actualiza la información del arco seleccionado.
+            - getSelected(): establece el arco seleccionado como valor de la variable arcoEdit.
         }
 
     - Comportamiento: {
