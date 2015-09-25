@@ -14,7 +14,7 @@ app.controller('AppCtrl',[
         };
         network = new vis.Network($scope.container, $scope.data, $scope.options);
 
-        // Definición de Variables para la depuración por Consola
+        // Definición de Variables
         dbg = {
             nodes: $scope.nodes,
             edges: $scope.edges,
@@ -23,6 +23,9 @@ app.controller('AppCtrl',[
             container: $scope.container
         };
 
+        $scope.nodoEdit = null;
+        $scope.arcoEdit = null;
+
         // Definición de Datos Iniciales para la creación del Trayecto
         $scope.trayecto = [
             {id: ''},
@@ -30,7 +33,6 @@ app.controller('AppCtrl',[
         ];
 
         // Funciones para los controles de creación de Trayecto
-        $scope.edicionNodo = null;
         $scope.nodo = {
             add: function(){
                 $scope.trayecto.push({id: ''});
@@ -42,18 +44,18 @@ app.controller('AppCtrl',[
             },
             getSeleccionado: function(){
                 $timeout(function(){
-                    $scope.edicionNodo = $scope.nodes.get(network.getSelectedNodes()[0]);
-                    if ($scope.edicionNodo.tipo === undefined) {
-                        $scope.edicionNodo.tipo = 1;
+                    $scope.nodoEdit = $scope.nodes.get(network.getSelectedNodes()[0]);
+                    if ($scope.nodoEdit.tipo === undefined) {
+                        $scope.nodoEdit.tipo = 1;
                     }
-                    $scope.nodo.conexiones = network.getConnectedNodes($scope.edicionNodo.id);
+                    $scope.nodo.conexiones = network.getConnectedNodes($scope.nodoEdit.id);
                 },0);
             },
             setCambios: function(){
-                $scope.nodes.update($scope.edicionNodo);
+                $scope.nodes.update($scope.nodoEdit);
             },
             setOrientacion: function(){
-                $scope.nodes.update($scope.edicionNodo);
+                $scope.nodes.update($scope.nodoEdit);
             }
         };
 
@@ -154,35 +156,34 @@ app.controller('AppCtrl',[
         network.on('click', function(){
             if (network.getSelectedEdges().length === 0) {
                 $timeout(function(){
-                    $scope.edicionArco = null;
+                    $scope.arcoEdit = null;
                 },0);
             }
             if (network.getSelectedNodes().length === 0) {
                 $timeout(function(){
-                    $scope.edicionNodo = null;
+                    $scope.nodoEdit = null;
                 },0);
             }
         });
 
         // Funcion de Manipulación de Arcos
-        $scope.edicionArco = null;
         $scope.arco = {
             getSeleccionado: function(){
                 if (network.getSelectedEdges().length == 1) {
                     $timeout(function(){
-                        $scope.edicionArco = $scope.edges.get(network.getSelectedEdges()[0]);
+                        $scope.arcoEdit = $scope.edges.get(network.getSelectedEdges()[0]);
                     },0);
                 }else{
                     $timeout(function(){
-                        $scope.edicionArco = null;
+                        $scope.arcoEdit = null;
                     },0);
                     console.log('se selecciono varios');
                 }
             },
 
             setDistancia: function(){
-                $scope.edicionArco.label = $scope.edicionArco.distancia;
-                $scope.edges.update($scope.edicionArco);
+                $scope.arcoEdit.label = $scope.arcoEdit.distancia;
+                $scope.edges.update($scope.arcoEdit);
             }
         };
 

@@ -1,9 +1,9 @@
 $('document').ready(function(){
     angular.forEach(nodesTerminal, function(value, key){
-        deb.nodes.add(value);
+        dbg.nodes.add(value);
     });
     angular.forEach(edgesTerminal, function(value, key){
-        deb.edges.add(value);
+        dbg.edges.add(value);
     });
 
     network.setOptions({nodes: {physics: false }});
