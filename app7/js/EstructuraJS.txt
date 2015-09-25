@@ -12,7 +12,7 @@ Controller Network
         Detectar evento de Selección de Arco.
         Detectar evento de Click con el mouse.
 
-    - Trayecto
+    - Trayectoria
         - addField(): Creación de campos de formulario de nodos a crear
 
         - removeField(): Eliminar campo de formulario si la cantidad de campos es mayor a 2.

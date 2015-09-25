@@ -6,10 +6,10 @@ div(class="row")
                 i(class="glyphicon glyphicon-menu-right", ng-hide="($index + 1) == trayecto.length")
 
 div(class="text-center")
-    button(class="btn btn-success btn-block", ng-click="nodo.add()") 
+    button(class="btn btn-success btn-block", ng-click="trayectoria.addField()") 
         i(class="glyphicon glyphicon-plus")
         |  Agregar Nodo
-    button(class="btn btn-danger btn-block", ng-click="nodo.remove()") 
+    button(class="btn btn-danger btn-block", ng-click="trayectoria.removeField()") 
         i(class="glyphicon glyphicon-minus")
         |  Quitar Nodo
     button(class="btn btn-info btn-block", ng-click="trayectoria.clean()") 

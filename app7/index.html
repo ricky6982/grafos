@@ -50,8 +50,8 @@
                 </div>
               </div>
               <div class="text-center">
-                <button ng-click="nodo.add()" class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
-                <button ng-click="nodo.remove()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
+                <button ng-click="trayectoria.addField()" class="btn btn-success btn-block"> <i class="glyphicon glyphicon-plus"></i> Agregar Nodo</button>
+                <button ng-click="trayectoria.removeField()" class="btn btn-danger btn-block"> <i class="glyphicon glyphicon-minus"></i> Quitar Nodo</button>
                 <button ng-click="trayectoria.clean()" class="btn btn-info btn-block">
                    
                    Limpiar Trayecto
@@ -156,10 +156,10 @@
           <div id="orientacion" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
               <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
-              <div ng-show="nodoEdit">
-                <legend>Nodo {{ nodoEdit.id }} conectado a:</legend>
+              <div ng-show="edicionNodo">
+                <legend>Nodo {{ edicionNodo.id }} conectado a:</legend>
                 <div ng-repeat="item in nodo.conexiones" class="form-group">Nodo <strong>" {{ item }} " </strong>por 
-                  <select ng-model="nodoEdit.conexiones[item]" class="form-control">
+                  <select ng-model="edicionNodo.conexiones[item]" class="form-control">
                     <option value="3">Izquierda</option>
                     <option value="1">Derecha</option>
                     <option value="0">Arriba</option>

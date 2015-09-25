@@ -3,7 +3,9 @@ var app = angular.module('app', []);
 app.controller('AppCtrl',[
     '$scope', '$timeout', '$filter',
     function($scope, $timeout, $filter){
+
         // Definición de Grafo con VisJs
+        // =============================
         $scope.nodes = new vis.DataSet([]);
         $scope.edges = new vis.DataSet([]);
         $scope.options = {};
@@ -15,6 +17,7 @@ app.controller('AppCtrl',[
         network = new vis.Network($scope.container, $scope.data, $scope.options);
 
         // Definición de Variables
+        // =======================
         dbg = {
             nodes: $scope.nodes,
             edges: $scope.edges,
@@ -25,41 +28,48 @@ app.controller('AppCtrl',[
 
         $scope.nodoEdit = null;
         $scope.arcoEdit = null;
+        $scope.cantidadNodos = 0;
+        $scope.cantidadArcos = 0;
 
-        // Definición de Datos Iniciales para la creación del Trayecto
+        // Detección de Eventos en la red
+        // ==============================
+        network.on('selectEdge', function(){
+            $scope.arco.getSeleccionado();
+        });
+
+        network.on('selectNode', function(){
+            $scope.nodo.getSeleccionado();
+        });
+
+        network.on('click', function(){
+            if (network.getSelectedEdges().length === 0) {
+                $timeout(function(){
+                    $scope.arcoEdit = null;
+                },0);
+            }
+            if (network.getSelectedNodes().length === 0) {
+                $timeout(function(){
+                    $scope.nodoEdit = null;
+                },0);
+            }
+        });
+
+        // Trayectoria
+        // ===========
         $scope.trayecto = [
             {id: ''},
             {id: ''}
         ];
 
-        // Funciones para los controles de creación de Trayecto
-        $scope.nodo = {
-            add: function(){
+        $scope.trayectoria = {
+            addField: function(){
                 $scope.trayecto.push({id: ''});
             },
-            remove: function(){
+            removeField: function(){
                 if ($scope.trayecto.length > 2) {
                     $scope.trayecto.pop();
                 }
             },
-            getSeleccionado: function(){
-                $timeout(function(){
-                    $scope.nodoEdit = $scope.nodes.get(network.getSelectedNodes()[0]);
-                    if ($scope.nodoEdit.tipo === undefined) {
-                        $scope.nodoEdit.tipo = 1;
-                    }
-                    $scope.nodo.conexiones = network.getConnectedNodes($scope.nodoEdit.id);
-                },0);
-            },
-            setCambios: function(){
-                $scope.nodes.update($scope.nodoEdit);
-            },
-            setOrientacion: function(){
-                $scope.nodes.update($scope.nodoEdit);
-            }
-        };
-
-        $scope.trayectoria = {
             clean: function(){
                 angular.forEach($scope.trayecto, function(value, key){
                     value.id = '';
@@ -101,6 +111,26 @@ app.controller('AppCtrl',[
                 }
             }
         };
+
+        // Funciones para los controles de creación de Trayecto
+        $scope.nodo = {
+            getSeleccionado: function(){
+                $timeout(function(){
+                    $scope.nodoEdit = $scope.nodes.get(network.getSelectedNodes()[0]);
+                    if ($scope.nodoEdit.tipo === undefined) {
+                        $scope.nodoEdit.tipo = 1;
+                    }
+                    $scope.nodo.conexiones = network.getConnectedNodes($scope.nodoEdit.id);
+                },0);
+            },
+            setCambios: function(){
+                $scope.nodes.update($scope.nodoEdit);
+            },
+            setOrientacion: function(){
+                $scope.nodes.update($scope.nodoEdit);
+            }
+        };
+
 
         // Funciones para los controles del comportamiento del Grafo.
         $scope.comportamiento = {
@@ -144,29 +174,7 @@ app.controller('AppCtrl',[
             }
         };
 
-        // Detección de Eventos en la red
-        network.on('selectEdge', function(){
-            $scope.arco.getSeleccionado();
-        });
-
-        network.on('selectNode', function(){
-            $scope.nodo.getSeleccionado();
-        });
-
-        network.on('click', function(){
-            if (network.getSelectedEdges().length === 0) {
-                $timeout(function(){
-                    $scope.arcoEdit = null;
-                },0);
-            }
-            if (network.getSelectedNodes().length === 0) {
-                $timeout(function(){
-                    $scope.nodoEdit = null;
-                },0);
-            }
-        });
-
-        // Funcion de Manipulación de Arcos
+                // Funcion de Manipulación de Arcos
         $scope.arco = {
             getSeleccionado: function(){
                 if (network.getSelectedEdges().length == 1) {
