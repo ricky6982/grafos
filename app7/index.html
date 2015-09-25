@@ -160,13 +160,13 @@
                 <legend>Nodo {{ nodoEdit.id }} conectado a:</legend>
                 <div ng-repeat="item in nodo.conexiones" class="form-group">Nodo <strong>" {{ item }} " </strong>por 
                   <select ng-model="nodoEdit.conexiones[item]" class="form-control">
-                    <option value="3">Izquierda</option>
-                    <option value="1">Derecha</option>
-                    <option value="0">Arriba</option>
-                    <option value="2">Abajo</option>
+                    <option value="izq">Izquierda</option>
+                    <option value="der">Derecha</option>
+                    <option value="arr">Arriba</option>
+                    <option value="abj">Abajo</option>
                   </select>
                 </div>
-                <button ng-click="nodo.update()" class="btn btn-primary btn-block">Guardar</button>
+                <button ng-click="orientacion.updateVecinos()" class="btn btn-primary btn-block">Guardar</button>
               </div>
             </div>
           </div>

@@ -6,9 +6,9 @@ div(ng-show="nodoEdit")
         strong " {{ item }} " 
         | por 
         select(class="form-control", ng-model="nodoEdit.conexiones[item]")
-            option(value="3") Izquierda
-            option(value="1") Derecha
-            option(value="0") Arriba
-            option(value="2") Abajo
-    button(class="btn btn-primary btn-block", ng-click="nodo.update()") Guardar
+            option(value="izq") Izquierda
+            option(value="der") Derecha
+            option(value="arr") Arriba
+            option(value="abj") Abajo
+    button(class="btn btn-primary btn-block", ng-click="orientacion.updateVecinos()") Guardar
 

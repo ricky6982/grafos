@@ -200,7 +200,9 @@ app.controller('AppCtrl',[
             }
         };
 
-        // Calculo del Camino mas Corto con Libreria de Dijkstra
+        // ============================
+        // Calculo del Camino mas Corto
+        // ============================
         addConexion = function(nodoInicial, nodoFinal, valorDistancia){
             valorDistancia = parseInt(valorDistancia,10);
             buscarNodo = $filter('filter')(grafoDijkstra, {origen: nodoInicial });
@@ -239,6 +241,21 @@ app.controller('AppCtrl',[
             console.log(g.shortestPath(i, f).concat(i).reverse());
             $scope.camino = g.shortestPath(i, f).concat(i).reverse();
         };
+
+        // ===========
+        // Orientación
+        // ===========
+        $scope.orientacion = {
+            updateVecinos: function(){
+                angular.forEach($scope.nodoEdit.conexiones, function(value, key){
+                    console.log(value + '<=' + key);
+                    $filter('filter')($scope.nodoEdit.conexiones, {$: value});
+                });
+            }
+        };
+
+
+
     }
 ]);
 
