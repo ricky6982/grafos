@@ -15,6 +15,8 @@ bower_components/bootstrap/*
 bower_components/jquery/*
 !bower_components/jquery/dist
 
+!bower_components/underscore
+
 !bower_components/vis
 bower_components/vis/*
 !bower_components/vis/dist
