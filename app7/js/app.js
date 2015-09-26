@@ -273,6 +273,24 @@ app.controller('AppCtrl',[
                 else{
                     console.log('Existe valores duplicados');
                 }
+            },
+            validar: function(){
+                angular.forEach($scope.nodes._data, function(nodo, keyNodo){
+                    var estadoFlag = true;
+                    angular.forEach(nodo.conexiones, function(value, key){
+                        if (_.size(nodo.conexiones) === _.size(network.getConnectedNodes(nodo.id))) {
+                            var nodoVecino = $scope.nodes.get(key);
+                            if (nodo.conexiones[key] !== direccionInversa(nodoVecino.conexiones[nodo.id])) {
+                                estadoFlag = false;
+                                console.log('el nodo no es valido');
+                            }else{
+                                console.log('el nodo %s es valido', nodo.id );
+                            }
+                        }else{
+                            console.log('Falta estrablecer la orientación en el nodo %s, hacia sus nodos vecinos', nodo.id);
+                        }
+                    });
+                });
             }
         };
 

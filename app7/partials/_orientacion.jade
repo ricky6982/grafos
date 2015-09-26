@@ -1,4 +1,5 @@
 p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
+button(class="btn btn-success btn-block", ng-click="orientacion.validar()") Validar
 div(ng-show="nodoEdit")
     legend Nodo {{ nodoEdit.id }} conectado a:
     div(class="form-group",ng-repeat="item in nodo.conexiones")
