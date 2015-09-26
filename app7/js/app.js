@@ -247,12 +247,47 @@ app.controller('AppCtrl',[
         // ===========
         $scope.orientacion = {
             updateVecinos: function(){
+                // Verificando que los nodos vecinos no tengan el mismo valor de dirección
+                var orientacionFlag = true;
                 angular.forEach($scope.nodoEdit.conexiones, function(value, key){
-                    console.log(value + '<=' + key);
-                    $filter('filter')($scope.nodoEdit.conexiones, {$: value});
+                    direccion = _.filter($scope.nodoEdit.conexiones, function(val){
+                        return val === value;
+                    });
+                    if (direccion.length > 1) {
+                        orientacionFlag = false;
+                    }
                 });
+                // Si la orientación a cada nodo no se repite
+                if (orientacionFlag) {
+                    // Establecer orientación a nodos vecinos respecto el nodo de edición.
+                    $scope.nodes.update($scope.nodoEdit);
+                    angular.forEach($scope.nodoEdit.conexiones, function(value, key){
+                        var nodoVecino = $scope.nodes.get(key);
+                        var conexionVecino = {};
+                        conexionVecino[$scope.nodoEdit.id] = direccionInversa(value);
+                        _.defaults(conexionVecino, nodoVecino.conexiones);
+                        nodoVecino.conexiones = conexionVecino;
+                        $scope.nodes.update(nodoVecino);
+                    });
+                }
+                else{
+                    console.log('Existe valores duplicados');
+                }
             }
         };
+
+        function direccionInversa(direccion){
+            switch(direccion){
+                case 'izq':
+                    return 'der';
+                case 'der':
+                    return 'izq';
+                case 'arr':
+                    return 'abj';
+                case 'abj':
+                    return 'arr';
+            }
+        }
 
 
 
