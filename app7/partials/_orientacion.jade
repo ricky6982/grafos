@@ -1,6 +1,4 @@
-p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
-button(class="btn btn-success btn-block", ng-click="orientacion.validar()") Validar
-div(ng-show="nodoEdit")
+div(ng-show="nodoEdit" class="form-group")
     legend Nodo {{ nodoEdit.id }} conectado a:
     div(class="form-group",ng-repeat="item in nodo.conexiones")
         | Nodo 
@@ -11,5 +9,7 @@ div(ng-show="nodoEdit")
             option(value="der") Derecha
             option(value="arr") Arriba
             option(value="abj") Abajo
-    button(class="btn btn-primary btn-block", ng-click="orientacion.updateVecinos()") Guardar
+    button(class="btn btn-primary btn-block", ng-click="orientacion.updateVecinos(); orientacion.validar()") Guardar
+
+p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
 

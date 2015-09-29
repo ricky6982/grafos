@@ -279,15 +279,27 @@ app.controller('AppCtrl',[
                     var estadoFlag = true;
                     angular.forEach(nodo.conexiones, function(value, key){
                         if (_.size(nodo.conexiones) === _.size(network.getConnectedNodes(nodo.id))) {
-                            var nodoVecino = $scope.nodes.get(key);
-                            if (nodo.conexiones[key] !== direccionInversa(nodoVecino.conexiones[nodo.id])) {
-                                estadoFlag = false;
-                                console.log('el nodo no es valido');
+                            if (_.max(_.countBy(nodo.conexiones, _.identity)) < 2){
+                                var nodoVecino = $scope.nodes.get(key);
+                                if (nodo.conexiones[key] === direccionInversa(nodoVecino.conexiones[nodo.id])) {
+                                    console.log('El nodo %s es valido', nodo.id );
+                                    nodo.color = { background: "#10E256", highlight: { background: "#10E256"} };
+                                    $scope.nodes.update(nodo);
+                                }else{
+                                    estadoFlag = false;
+                                    console.log('El nodo no es valido');
+                                }
                             }else{
-                                console.log('el nodo %s es valido', nodo.id );
+                                estadoFlag = false;
+                                console.log('El nodo %s tiene valores repetidos', nodo.id);
                             }
                         }else{
-                            console.log('Falta estrablecer la orientación en el nodo %s, hacia sus nodos vecinos', nodo.id);
+                            estadoFlag = false;
+                            console.log('En el nodo %s falta estrablecer la orientación hacia sus nodos vecinos', nodo.id);
+                        }
+                        if (!estadoFlag) {
+                            nodo.color = { background: "#FFBD66", highlight: { background: "#FFBD66"} };
+                            $scope.nodes.update(nodo);
                         }
                     });
                 });

@@ -156,9 +156,7 @@
           </div>
           <div id="orientacion" role="tabpanel" aria-labelledby="Trayectorias" class="panel-collapse collapse">
             <div class="panel-body">
-              <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
-              <button ng-click="orientacion.validar()" class="btn btn-success btn-block">Validar</button>
-              <div ng-show="nodoEdit">
+              <div ng-show="nodoEdit" class="form-group">
                 <legend>Nodo {{ nodoEdit.id }} conectado a:</legend>
                 <div ng-repeat="item in nodo.conexiones" class="form-group">Nodo <strong>" {{ item }} " </strong>por 
                   <select ng-model="nodoEdit.conexiones[item]" class="form-control">
@@ -168,8 +166,9 @@
                     <option value="abj">Abajo</option>
                   </select>
                 </div>
-                <button ng-click="orientacion.updateVecinos()" class="btn btn-primary btn-block">Guardar</button>
+                <button ng-click="orientacion.updateVecinos(); orientacion.validar()" class="btn btn-primary btn-block">Guardar</button>
               </div>
+              <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
             </div>
           </div>
         </div>
