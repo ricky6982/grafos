@@ -12,4 +12,9 @@ div(ng-show="nodoEdit" class="form-group")
     button(class="btn btn-primary btn-block", ng-click="orientacion.updateVecinos(); orientacion.validar()") Guardar
 
 p Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.
-
+p
+    div(class="info-nodo-success")
+    | El Nodo tiene correctamente establecidas las direcciones respecto a sus nodos vecinos
+p
+    div(class="info-nodo-warning")
+    | Existe un conflicto en la orientación del nodo respecto a sus vecinos.

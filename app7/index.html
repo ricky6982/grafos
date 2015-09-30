@@ -27,6 +27,8 @@
       <div>Se agregaron las siguientes funciones al prototipo:
         <ul>
           <li>Se creo grafo de la nueva terminal que es desplegado al momento de ingresar al prototipo.</li>
+          <li>Se creo la función para que el usuario suministre la orientación hacia cada nodo.</li>
+          <li>Se creo la validación de la orientación de cada nodo respecto a sus vecinos.</li>
           <li>...</li>
         </ul>
       </div>
@@ -169,6 +171,12 @@
                 <button ng-click="orientacion.updateVecinos(); orientacion.validar()" class="btn btn-primary btn-block">Guardar</button>
               </div>
               <p>Cada nodo tiene una conexión hacia otros, estos estan ubicados en diferentes direcciones: Izquierda, Derecha, Arriba o Abajo.</p>
+              <p>
+                <div class="info-nodo-success"></div>El Nodo tiene correctamente establecidas las direcciones respecto a sus nodos vecinos
+              </p>
+              <p>
+                <div class="info-nodo-warning"></div>Existe un conflicto en la orientación del nodo respecto a sus vecinos.
+              </p>
             </div>
           </div>
         </div>
