@@ -190,11 +190,21 @@
     </div>
   </div>
   <div style="margin: 10px" class="row">
-    <div class="well well-sm">
-      <h4>Modelo</h4>
-      <ul>
-        <li ng-repeat="node in nodes._data"><strong>Id: </strong>{{ node.id }}<strong>- Label:</strong>{{ node.label }}</li>
+    <div>
+      <ul role="tablist" class="nav nav-tabs">
+        <li class="active"><a href="#modeloNodos" data-toggle="tab">Modelo de Datos para Nodos</a></li>
+        <li><a href="#modeloArcos" data-toggle="tab">Modelo de Datos para Arcos</a></li>
       </ul>
+      <div class="tab-content">
+        <div id="modeloNodos" class="tab-pane active">
+          <pre>
+            <legend>Modelo de Datos para los Nodos</legend>{{ nodes | json }}</pre>
+        </div>
+        <div id="modeloArcos" class="tab-pane">
+          <pre>
+            <legend>Modelo de Datos para los Arcos</legend>{{ edges | json }}</pre>
+        </div>
+      </div>
     </div>
   </div>
 </body>

@@ -44,12 +44,21 @@ body(ng-app="app" ng-controller="AppCtrl")
     
     div(class="row", style="margin: 10px")
         block contenedor
-            div(class="well well-sm")
-                h4 Modelo
-                ul
-                    li(ng-repeat="node in nodes._data")
-                        strong Id: 
-                        | {{ node.id }}
-                        strong - Label:
-                        | {{ node.label }}
+            div
+                //- Tabs
+                ul(class="nav nav-tabs", role="tablist")
+                    li(class="active")
+                        a(href="#modeloNodos", data-toggle="tab") Modelo de Datos para Nodos
+                    li
+                        a(href="#modeloArcos", data-toggle="tab") Modelo de Datos para Arcos
+                div(class="tab-content")
+                    div(class="tab-pane active", id="modeloNodos")
+                        pre
+                            legend Modelo de Datos para los Nodos
+                            | {{ nodes | json }}
+                    div(class="tab-pane", id="modeloArcos")
+                        pre
+                            legend Modelo de Datos para los Arcos
+                            | {{ edges | json }}
+
 
